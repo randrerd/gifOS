@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GifOS Website</title>
+   
+    <link rel="stylesheet" href="styles/themes/sailor_day.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="normalize.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <p class="header-content">
+        ¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número
+        de visitas: 12.765.803
+      </p>
+    </header>
+    <nav class="navbar">
+      <div class="navbar-logo-container">
+        <img src="assets/arrow.svg" alt="" class="navbar-return-arrow hidden" />
+        <div class="navbar-logo-placeholder"></div>
+      </div>
+      <div class="navbar-buttons-wrapper">
+        <button class="btn navbar-btn create-btn">
+          <span class="btn-text navbar-create-btn-txt"> Crear Guifo</span>
+        </button>
+        <div class="navbar-dropdown-container">
+          <button class="btn navbar-btn navbar-theme-btn">
+            <span class="btn-text navbar-theme-btn-text">Elegir Tema</span>
+          </button>
+          <div class="navbar-dropdown-theme-options-container hidden">
+            <button href="#" class="btn navbar-dropdown-theme-option">
+             <span class="navbar-dropdown-option-text light-theme-btn btn-text"> Sailor Day</span></button
+            ><button href="#" class="btn navbar-dropdown-theme-option">
+             <span class="navbar-dropdown-option-text dark-theme-btn btn-text"> Sailor Night</span>
+            </button>
+          </div>
+        </div>
+        <a href="#" class="navbar-myGIFS-btn"
+          ><span class="underline">M</span>is Guifos</a
+        >
+      </div>
+    </nav>
+    <main id="content-container">
+      <div class="searchbox-container hidden-on-creating-phase">
+        <h3 class="gradient-header">Buscar</h3>
+        <div class="searchbox-wrapper">
+          <input
+            class="searchbox-input"
+            type="search"
+            name="searchbox"
+            placeholder="Busca gifs, hashtags, temas, busca lo que quieras…"
+            autocomplete="off"
+            id=""
+          />
+          <button type="submit" class="searchbox-input-submit" disabled>
+            <span class="searchbox-input-submit-text search-btn-text"
+              >Buscar</span
+            >
+          </button>
+        </div>
+      </div>
+      <section class="suggestions-container hidden-on-creating-phase">
+        <h1>Hoy te sugerimos:</h1>
+        <div class="equalSize-gif-row-container">
+          <div class="gif-container">
+            <div class="gif-header-container">
+              <h2 class="gif-title">this is a placeholder</h2>
+              <button class="gif-times-btn"></button>
+            </div>
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <a href="#" class="gif-content-details-btn">Ver más...</a>
+          </div>
+          <div class="gif-container">
+            <div class="gif-header-container">
+              <h2 class="gif-title">this is a placeholder</h2>
+              <button class="gif-times-btn"></button>
+            </div>
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <a href="#" class="gif-content-details-btn">Ver más...</a>
+          </div>
+          <div class="gif-container">
+            <div class="gif-header-container">
+              <h2 class="gif-title">this is a placeholder</h2>
+              <button class="gif-times-btn"></button>
+            </div>
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <a href="#" class="gif-content-details-btn">Ver más...</a>
+          </div>
+          <div class="gif-container">
+            <div class="gif-header-container">
+              <h2 class="gif-title">this is a placeholder</h2>
+              <button class="gif-times-btn"></button>
+            </div>
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <a href="#" class="gif-content-details-btn">Ver más...</a>
+          </div>
+        </div>
+      </section>
+      <section class="trending-container hidden-on-creating-phase">
+        <h1>Tendencias:</h1>
+        <div class="equalSize-gif-row-container">
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+        </div>
+        <div class="firstLarge-gif-row-container">
+          <div class="gif-container gif-large">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+        </div>
+        <div class="lastLarge-gif-row-container">
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container gif-large">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+        </div>
+      </section>
+      <section class="searchResults-container hidden">
+        <h1>Resultado de la búsqueda</h1>
+        <div class="equalSize-gif-row-container">
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+        </div>
+        <div class="firstLarge-gif-row-container">
+          <div class="gif-container gif-large">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+        </div>
+        <div class="lastLarge-gif-row-container">
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+          <div class="gif-container gif-large">
+            <img
+              src="assets/placeholder_fadein.gif"
+              alt=""
+              class="gif-content-img loading-animation"
+            />
+            <h2 class="gif-title-tagline">#this #is #a #place #holder</h2>
+          </div>
+        </div>
+      </section>
+      <div class="create-gif-container creating-phase-step1 hidden">
+        <h3 class="gradient-header">Crear Guifos</h3>
+        <div class="create-gif-container-wrapper">
+        <div class="create-gif-container-subheader-wrapper">
+          <img
+            class="small-window-icon"
+            src="assets/window_img.png"
+            alt="small window icon"
+          />
+          <p class="create-gif-subheader-content">
+            Aquí podras crear tus propios guifos
+          </p>
+        </div>
+        <div class="create-gif-container-wrapper-content">
+          <p class="create-gif-container-content">
+            Crear tu <em>guifo</em> es muy fácil, graba cualquier imagen con tu
+            cámara y obtén guifos personalizados. Los pasos para crear tu guifo
+            son:
+          </p>
+          <ol class="numbered-list">
+            <li>
+              Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
+            </li>
+            <li>Capturar tu momento guifo</li>
+            <li>Revisar el momento</li>
+            <li>Listo para subir y compartir!</li>
+          </ol>
+          <p class="create-gif-container-content-question">
+            ¿Quieres comenzar a crear tu <em>guifo</em> ahora?
+          </p>
+        </div>
+        <div class="create-gif-container-buttons">
+          <button class="btn btn-light create-gif-cancel-btn cp-btn"><span class="btn-text"> Cancelar</span></button>
+          <button class="btn create-gif-start-btn cp-btn"><span class="btn-text">Comenzar</span></button>
+        </div>
+      </div>
+      </div>
+      <div class="capture-video-container creating-phase-step2 hidden">
+        <div class="capture-video-container-header-wrapper gif-header-container">
+          <h3 class="gradient-header">Crear Guifos</h3>
+          <button class="gif-times-btn"></button>
+        </div>
+        <video src="#"></video>
+        <button class="btn-capture btn cp-btn">
+          <span class="btn-capture-text btn-text">Capturar</span>
+        </button>
+      </div>
+      <div class="capturing-video-container creating-phase-step3 hidden">
+        <div class="capturing-video-container-header-wrapper gif-header-container">
+          <h3 class="gradient-header">Capturando tu Guifo</h3>
+          <button class="gif-times-btn"></button>
+        </div>
+        <video src="#"></video>
+        <div class="capturing-video-container videodetails-wrapper">
+          <div class="videodetails-timer"></div>
+          <button class="btn-done btn">
+            <span class="btn-done-text btn-text">Listo</span>
+          </button>
+        </div>
+      </div>
+      <div class="preview-video-container creating-phase-step4 hidden">
+        <div class="preview-video-container-header-wrapper gif-header-container>
+          <h3 class="gradient-header">Vista Previa</h3>
+        </div>
+        <video src="#"></video>
+        <div class="preview-video-container videodetails-wrapper">
+          <div class="videodetails-timer"></div>
+          <div class="preview-video-playbar-wrapper">
+            <button class="play-btn"></button>
+            <div class="preview-video-playbar-progress-wrapper">
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+              <span
+                class="preview-video-playbar-progress-bar empty-block"
+              ></span>
+            </div>
+          </div>
+          <div class="preview-video-buttons-wrapper">
+            <button class="btn-light repeat-capture-btn">
+              Repetir Captura
+            </button>
+            <button class="btn upload-btn"> <span class="btn-text">Subir Guifo</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="uploading-video-container creating-phase-step5 hidden">
+        <div class="uploading-video-container-header-wrapper gif-header-container">
+          <h3 class="gradient-header">Subiendo Guifo</h3>
+          <button class="gif-times-btn"></button>
+        </div>
+        <div class="uploading-video-content-wrapper">
+          <img src="assets/globe_img.png" alt="a globe" />
+          <p class="uploading-video-text">Estamos subiendo tu guifo...</p>
+          <div class="uploading-video-progress-wrapper">
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+            <span class="uploading-video-progress-bar empty-block"></span>
+          </div>
+          <p class="uploading-video-remaining-time">Tiempo restante:</p>
+          <p class="strikethrough">38 años</p>
+          <p class="uploading-video-remaining-time">algunos minutos</p>
+        </div>
+        <button class="btn-light uploading-video-cancel-btn"><span class="btn-text">Cancelar</span></button>
+      </div>
+      <div class="success-upload-container creating-phase-step6 hidden">
+        <div class="success-upload-container-header-wrapper gif-header-container>
+          <h3 class="gradient-header">Guifo Subido Con Éxito</h3>
+          <button class="gif-times-btn"></button>
+        </div>
+        <div class="success-upload-content-wrapper">
+          <video src="#"></video>
+          <div class="success-upload-content">
+            <p>Guifo creado con éxito</p>
+            <button class="btn-light copy-gif-btn">Copiar Enlace Guifo</button>
+            <button class="btn-light download-gif-btn">Descargar Guifo</button>
+            <button class="btn done-btn"><span class="btn-text">Listo</span></button>
+          </div>
+        </div>
+      </div>
+      <section class="myGifs-container hidden">
+        <h1>Mis Guifos</h1>
+        <div class="equalSize-gif-row-container"></div>
+        <div class="firstLarge-gif-row-container"></div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

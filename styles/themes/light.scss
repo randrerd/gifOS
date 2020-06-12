@@ -1,0 +1,91 @@
+$backgroundColor: #fff4fd;
+
+$textColor: #110038;
+$secondaryTextColor: #fff;
+$textColorUnactive: #b4b4b4;
+$textColorBtn: $textColor;
+
+$primaryColor: #f7c9f3;
+$primaryColorHover: #e6bbe2;
+$primaryShadow: inset -1px -1px 0 0 #997d97,
+  inset 1px 1px 0 0 $secondaryTextColor;
+
+$secondaryColor: #4180f6;
+$secondaryColorHover: #3a72db;
+$secondaryShadow: inset -2px -2px 0 0 #284f99,
+  inset 2px 2px 0 0 $secondaryTextColor;
+$secondaryColorBorder: #4c2f99;
+
+$secondaryBtnColor: #fff4fd;
+$secondaryBtnColorHover: #f0e5ee;
+
+$doneBtnColor: #ff6161;
+$doneBtnColorShadow: inset -1px -1px 0 0 #993a3a,
+  inset 1px 1px 0 0 $secondaryTextColor;
+
+$progressBlock: $primaryColor;
+$progressBlockUnfilled: #999999;
+
+$gradient: linear-gradient(270deg, $primaryColor 0%, $secondaryColor 100%);
+
+$windowBackgroundColor: #e6e6e6;
+$windowBackgroundShadow: inset -2px -2px 0 0 $textColorUnactive,
+  inset 2px 2px 0 0 $secondaryTextColor;
+
+$inputBarShadow: inset -2px -2px 0 0 $windowBackgroundColor,
+  inset 2px 2px 0 0 #000;
+$itemShadow: inset -1px -1px 0 0 $textColorUnactive,
+  inset 1px 1px 0 0 $secondaryTextColor;
+$loadingBarShadow: inset -2px -2px 0 0 #fffcfc, inset 2px 2px 0 0 #000;
+
+.navbar {
+  &-logo-placeholder {
+    background-image: url(/assets/gifOF_logo.png);
+  }
+
+  &-theme-btn {
+    &::after {
+      background: url(/assets/dropdown.svg) no-repeat;
+      content: "";
+      background-position: center;
+      padding: 0 0.85rem;
+    }
+  }
+}
+
+.search-btn-text {
+  &::before {
+    background-image: url(/assets/lupa.svg);
+    display: inline-block;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    background-repeat: no-repeat;
+    margin-right: 0.3rem;
+  }
+}
+
+.btn-capture-text {
+  &::before {
+    background-image: url(/assets/camera.svg);
+  }
+}
+
+.btn-done-text {
+  &::before {
+    background-image: url(/assets/recording_dark.svg);
+  }
+}
+
+.searchbox-wrapper {
+  input:placeholder-shown ~ button.searchbox-input-submit {
+    .search-btn-text {
+      &::before {
+        background-image: url(/assets/lupa_inactive.svg);
+        
+      }
+    }
+  }
+}
+
+@import "colorsheet";

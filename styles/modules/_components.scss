@@ -1,0 +1,148 @@
+/*TEXT ELEMENTS AND INPUTS*/
+
+p{
+    @extend %fontStack;
+}
+
+.numbered-list{
+    counter-reset: list;
+    li{
+    &::before{
+        content: counter(list, decimal) ")";
+        counter-increment: list;
+        font-weight: bold;
+    }
+    @extend %fontStack;
+    margin: 0.25rem;
+}
+}
+
+a {
+  @extend %fontStack;
+}
+
+em{
+    font-weight: bold;
+}
+
+.underline {
+  border-bottom: 1px solid black;
+}
+
+
+h1 {
+  @extend %fontStack;
+  width: 100%;
+  padding: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+
+h3,
+h2 {
+  @extend %fontStackBold;
+}
+
+.gradient-header{
+    padding: 0.25rem;
+}
+
+input {
+  @extend %fontStack;
+  font-size: 0.65rem;
+}
+.searchbox{
+    &-container{
+        margin-bottom: 2rem;
+        padding: 0.5rem 0;
+
+    }
+    &-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 1rem;
+    }
+    &-input{
+        padding: 0.25rem;
+        width: 100%;
+        margin: 1rem;
+
+    }
+    &-input-submit-text{
+        display: flex;
+        padding: 0.45rem 1.75rem;
+        padding-right: 2.7rem;
+    }
+}
+
+/*BUTTONS*/
+
+
+.btn {
+  padding: 1px;
+  &.navbar-dropdown-theme-option {
+    width: 90%;
+    margin: 0.5rem;
+    padding: 0.35rem 1rem;
+    display: flex;
+    align-self: center;
+  }
+  &-text{
+    @extend %fontStack;
+    padding: 0.45rem 1.75rem;
+    display: inline-block;
+    .cp{
+        padding: 0.25rem 1.45rem;
+    }
+  }
+}
+.gif-times-btn {
+  background-image: url(/assets/close.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 1.15em;
+  height: 1em;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+
+
+
+/*GIF CONTAINERS AND CONTENT*/
+.gif {
+  &-header-container {
+    display: flex;
+    padding: 0 0.25rem;
+    margin-bottom: 0.3rem;
+  }
+  &-title-tagline {
+    visibility: visible;
+    padding: 0.35rem;
+  }
+  &-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 1rem;
+    &:hover .gif-title-tagline {
+      visibility: visible;
+    }
+  }
+  &-content-details-btn {
+    position: relative;
+    bottom: 2.75rem;
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/*ICONS CREATING PHASE*/
+
+.small-window-icon{
+    position: absolute;
+    left: 30px;
+    align-self: center;
+    margin-bottom: 1rem;
+}

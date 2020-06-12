@@ -1,0 +1,281 @@
+/*Defaults and tools*/
+*,
+*:after,
+*:before {
+  -webkit-appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+
+p {
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  line-height: 1.1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  cursor: default;
+  color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+/* FONTSTACKS */
+header .header-content, .btn-text, input, h1, a, .numbered-list li, p {
+  font-family: "Chakra Petch", Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+h3,
+h2 {
+  font-family: "Chakra Petch", Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.flex {
+  display: flex;
+}
+
+html {
+  font-size: calc(1em + 1vw);
+}
+
+/*Modules*/
+/*TEXT ELEMENTS AND INPUTS*/
+.numbered-list {
+  counter-reset: list;
+}
+.numbered-list li {
+  margin: 0.25rem;
+}
+.numbered-list li::before {
+  content: counter(list, decimal) ")";
+  counter-increment: list;
+  font-weight: bold;
+}
+
+em {
+  font-weight: bold;
+}
+
+.underline {
+  border-bottom: 1px solid black;
+}
+
+h1 {
+  width: 100%;
+  padding: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.gradient-header {
+  padding: 0.25rem;
+}
+
+input {
+  font-size: 0.65rem;
+}
+
+.searchbox-container {
+  margin-bottom: 2rem;
+  padding: 0.5rem 0;
+}
+.searchbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+.searchbox-input {
+  padding: 0.25rem;
+  width: 100%;
+  margin: 1rem;
+}
+.searchbox-input-submit-text {
+  display: flex;
+  padding: 0.45rem 1.75rem;
+  padding-right: 2.7rem;
+}
+
+/*BUTTONS*/
+.btn {
+  padding: 1px;
+}
+.btn.navbar-dropdown-theme-option {
+  width: 90%;
+  margin: 0.5rem;
+  padding: 0.35rem 1rem;
+  display: flex;
+  align-self: center;
+}
+.btn-text {
+  padding: 0.45rem 1.75rem;
+  display: inline-block;
+}
+.btn-text .cp {
+  padding: 0.25rem 1.45rem;
+}
+
+.gif-times-btn {
+  background-image: url(/assets/close.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 1.15em;
+  height: 1em;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/*GIF CONTAINERS AND CONTENT*/
+.gif-header-container {
+  display: flex;
+  padding: 0 0.25rem;
+  margin-bottom: 0.3rem;
+}
+.gif-title-tagline {
+  visibility: visible;
+  padding: 0.35rem;
+}
+.gif-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 1rem;
+}
+.gif-container:hover .gif-title-tagline {
+  visibility: visible;
+}
+.gif-content-details-btn {
+  position: relative;
+  bottom: 2.75rem;
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+/*ICONS CREATING PHASE*/
+.small-window-icon {
+  position: absolute;
+  left: 30px;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+
+header {
+  width: 100vw;
+  margin-top: 1px;
+  padding: 0 0.35rem;
+}
+header .header-content {
+  font-size: 0.6em;
+  padding: 0 0.2rem;
+}
+
+.navbar {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navbar-logo-container {
+  width: 55%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.navbar-return-arrow {
+  position: absolute;
+  left: 5rem;
+  align-self: center;
+}
+.navbar-logo-placeholder {
+  width: 7rem;
+  height: 4rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+.navbar-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navbar-btn {
+  margin: 0.3rem;
+}
+.navbar-theme-btn {
+  min-width: 10.5rem;
+}
+.navbar-theme-btn-text.btn-text {
+  border-right: 1px dotted black;
+}
+.navbar-myGIFS-btn {
+  padding: 0.65rem;
+}
+.navbar-dropdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navbar-dropdown-theme-options-container {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 10.5rem;
+}
+.navbar-dropdown-theme-options-container.is-active {
+  display: flex;
+}
+.navbar-dropdown-option-text {
+  padding: 0.35rem 1rem;
+}
+
+main {
+  padding: 0 1rem;
+}
+
+.create-gif-container {
+  flex-direction: column;
+  padding: 0.25rem;
+}
+.create-gif-container-subheader-wrapper {
+  display: flex;
+}
+.create-gif-container-wrapper {
+  padding: 0.5rem;
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+}
+.create-gif-container-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.create-gif-subheader-content {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.capture-video-container {
+  flex-direction: column;
+}
+.capture-video-container .cp-btn {
+  align-self: end;
+}
+
+/*# sourceMappingURL=style.css.map */

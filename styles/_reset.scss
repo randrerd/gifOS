@@ -1,0 +1,36 @@
+
+
+*,
+*:after,
+*:before{
+  -webkit-appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+
+p {
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  line-height: 1.1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  cursor: default;
+  color: black;
+}
+
+.hidden {
+  display: none;
+}

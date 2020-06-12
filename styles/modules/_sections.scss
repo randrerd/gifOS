@@ -1,0 +1,113 @@
+header {
+  width: 100vw;
+  margin-top: 1px;
+  padding: 0 0.35rem;
+
+  .header-content {
+    @extend %fontStack;
+    font-size: 0.6em;
+    padding: 0 0.2rem;
+  }
+}
+
+.navbar {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-logo-container {
+    width: 55%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  }
+  &-return-arrow {
+    position: absolute;
+    left: 5rem;
+    align-self: center;
+  }
+  &-logo-placeholder {
+    width: 7rem;
+    height: 4rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+  &-buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &-btn {
+    margin: 0.3rem;
+  }
+  &-theme-btn {
+    min-width: 10.5rem;
+  }
+  &-theme-btn-text.btn-text {
+    border-right: 1px dotted black;
+  }
+  &-myGIFS-btn {
+    padding: 0.65rem;
+  }
+  &-dropdown {
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-theme-options-container {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 10.5rem;
+      &.is-active {
+        display: flex;
+      }
+    }
+    &-option-text {
+      padding: 0.35rem 1rem;
+    }
+  }
+}
+
+main {
+  padding: 0 1rem;
+}
+
+.create-gif {
+  &-container {
+    // display: flex;
+    flex-direction: column;
+    padding: 0.25rem;
+    &-subheader-wrapper {
+      display: flex;
+    }
+    &-wrapper {
+      padding: 0.5rem;
+      padding-left: 2.5rem;
+      padding-right: 1rem;
+    }
+    &-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+  }
+  &-subheader-content {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.capture-video{
+    &-container{
+        // display: flex;
+        flex-direction: column;
+        .cp-btn{
+            align-self: end;
+        }
+    }
+
+}

@@ -16,18 +16,73 @@
   height: 1rem;
   background-repeat: no-repeat;
   margin-right: 0.3rem;
+  background-position: center;
 }
 
-.btn-capture-text::before {
+.btn-capture.btn::before {
   background-image: url(/assets/camera.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0 1rem;
+  display: inline-block;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  white-space: break-spaces;
 }
 
-.btn-done-text::before {
+.btn-done::before {
   background-image: url(/assets/recording_dark.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0 1rem;
+  display: inline-block;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  white-space: break-spaces;
 }
 
 .searchbox-wrapper input:placeholder-shown ~ button.searchbox-input-submit .search-btn-text::before {
   background-image: url(/assets/lupa_inactive.svg);
+}
+
+body {
+  background-color: #fff4fd;
+}
+
+.gradient-header, .gradient-background, .gif-header-container, .gif-title-tagline {
+  background-image: linear-gradient(270deg, #f7c9f3 0%, #4180f6 100%);
+}
+
+/*BASICS*/
+h2, h3, .header-content, .gif-content-details-btn {
+  color: #fff;
+}
+
+span {
+  color: #110038;
+}
+span.navbar-dropdown-option-text {
+  color: #6949a0;
+}
+
+/*COMPONENTS*/
+.btn {
+  background-color: #f7c9f3;
+  box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #fff;
+  border: 1px solid #110038;
+}
+.btn:hover {
+  background-color: #e6bbe2;
+}
+
+input.searchbox-input:placeholder-shown ~ .searchbox-input-submit {
+  border: 1px solid gray;
+  background-color: #e6e6e6;
+}
+input.searchbox-input:placeholder-shown ~ .searchbox-input-submit .searchbox-input-submit-text {
+  color: #b4b4b4;
 }
 
 /*# sourceMappingURL=sailor_day.css.map */

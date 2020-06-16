@@ -62,18 +62,36 @@ $loadingBarShadow: inset -2px -2px 0 0 #fffcfc, inset 2px 2px 0 0 #000;
     height: 1rem;
     background-repeat: no-repeat;
     margin-right: 0.3rem;
+    background-position: center;
   }
 }
 
-.btn-capture-text {
+.btn-capture.btn {
   &::before {
     background-image: url(/assets/camera.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0 1rem;
+    display: inline-block;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    white-space: break-spaces;
+
   }
 }
 
-.btn-done-text {
+.btn-done {
   &::before {
     background-image: url(/assets/recording_dark.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0 1rem;
+    display: inline-block;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    white-space: break-spaces;
   }
 }
 
@@ -82,7 +100,6 @@ $loadingBarShadow: inset -2px -2px 0 0 #fffcfc, inset 2px 2px 0 0 #000;
     .search-btn-text {
       &::before {
         background-image: url(/assets/lupa_inactive.svg);
-        
       }
     }
   }

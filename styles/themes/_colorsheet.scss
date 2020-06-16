@@ -1,0 +1,38 @@
+
+body{
+    background-color: $backgroundColor;
+}
+.gradient-header, .gradient-background, .gif-header-container, .gif-title-tagline{
+    background-image: $gradient;
+}
+
+/*BASICS*/
+h2, h3, .header-content, .gif-content-details-btn {
+    color: $secondaryTextColor;
+}
+span{
+    color: $textColor;
+    &.navbar-dropdown-option-text{
+        color: #6949a0;
+    }
+}
+
+
+/*COMPONENTS*/
+.btn{
+    background-color: $primaryColor;
+    box-shadow: $primaryShadow;
+    border: 1px solid $textColor;
+    &:hover{
+        background-color: $primaryColorHover;
+    }
+}
+input.searchbox-input:placeholder-shown{
+    &~ .searchbox-input-submit{
+    border: 1px solid gray;
+    background-color: $windowBackgroundColor;
+    }   
+    &~ .searchbox-input-submit .searchbox-input-submit-text{
+        color: $textColorUnactive;
+    }
+}

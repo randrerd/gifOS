@@ -48,13 +48,15 @@ const $creatingPhase1 = document.querySelector('.creating-phase-step1');
 const $creatingPhase2 = document.querySelector('.creating-phase-step2');
 
 /*BUTTONS BINDINGS */
-const $cancelBtn = document.querySelector('.create-gif-cancel-btn');
+const $cancelBtn = document.querySelectorAll('.create-gif-cancel-btn');
 const $startBtn = document.querySelector('.create-gif-start-btn');
 
+$cancelBtn.forEach(element => {
+  element.onclick =(() => {
+    window.location = '/';
+  })
+});
 
-$cancelBtn.onclick = (() =>{
-  window.location ="/";
-})
 
 $startBtn.onclick = (() =>{
   hideElements($creatingPhase1);

@@ -1,7 +1,7 @@
 header {
   width: 100vw;
   margin-top: 1px;
-  padding: 0 0.35rem;
+  margin-bottom: 2rem;
 
   .header-content {
     @extend %fontStack;
@@ -85,7 +85,7 @@ main {
     }
     &-wrapper {
       padding: 0.5rem;
-      padding-left: 2.5rem;
+      padding-left: 1.5rem;
       padding-right: 1rem;
     }
     &-buttons {
@@ -101,13 +101,90 @@ main {
   }
 }
 
-.capture-video{
-    &-container{
-        // display: flex;
-        flex-direction: column;
-        .cp-btn{
-            align-self: end;
-        }
+.capture-video {
+  &-container {
+    // display: flex;
+    flex-direction: column;
+    .cp-btn {
+      align-self: end;
     }
-
+  }
 }
+.capturing-video {
+  &-container {
+    // display: flex;
+    flex-direction: column;
+    &.videodetails {
+      &-timer {
+        width: 80%;
+        height: 1rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+.preview-video {
+  &-playbar {
+    &-wrapper {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &-buttons-wrapper{
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.uploading{
+  &-video{
+    &-container{
+      display: flex;
+      flex-direction: column;
+    }
+  &-content-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  &-text{
+    font-weight: bold;
+    &-wrapper{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  &-cancel-btn{
+    align-self: flex-end;
+  }
+}
+&-progress-bar{
+  margin-top: 1.5rem;
+}
+}
+.repeat-capture-btn{
+  margin-bottom: 0.55rem;
+}
+.success{
+  &-buttons-wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+  &-upload-content{
+    display: flex;
+    flex-direction: column;
+    p {
+      font-weight: bold;
+      margin-bottom: 0.80rem;
+    }
+    &-wrapper{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+

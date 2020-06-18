@@ -1,15 +1,15 @@
 .navbar-logo-placeholder {
-  background-image: url(/assets/gifOF_logo_dark.png);
+  background-image: url(../../assets/gifOF_logo_dark.png);
 }
 .navbar-theme-btn::after {
-  background: url(/assets/dropdown.svg) no-repeat;
+  background: url(../../assets/dropdown.svg) no-repeat;
   content: "";
   background-position: center;
   padding: 0 0.85rem;
 }
 
 .search-btn-text::before {
-  background-image: url(/assets/lupa_light.svg);
+  background-image: url(../../assets/lupa_light.svg);
   display: inline-block;
   content: "";
   width: 1rem;
@@ -20,7 +20,7 @@
 }
 
 .btn-capture.btn::before {
-  background-image: url(/assets/camera_light.svg);
+  background-image: url(../../assets/camera_light.svg);
   background-repeat: no-repeat;
   background-position: center;
   padding: 0 1rem;
@@ -32,7 +32,7 @@
 }
 
 .btn-done::before {
-  background-image: url(/assets/recording.svg);
+  background-image: url(../../assets/recording.svg);
   background-repeat: no-repeat;
   background-position: center;
   padding: 0 1rem;
@@ -44,7 +44,7 @@
 }
 
 .searchbox-wrapper input:placeholder-shown ~ button.searchbox-input-submit .search-btn-text::before {
-  background-image: url(/assets/lupa-inactive-dark.svg);
+  background-image: url(../../assets/lupa-inactive-dark.svg);
 }
 
 /*Section Specific Elements*/

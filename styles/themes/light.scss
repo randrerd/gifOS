@@ -48,12 +48,12 @@ $loadingBarShadow: inset -2px -2px 0 0 #fffcfc, inset 2px 2px 0 0 #000;
 
 .navbar {
   &-logo-placeholder {
-    background-image: url(/assets/gifOF_logo.png);
+    background-image: url(../../assets/gifOF_logo.png);
   }
 
   &-theme-btn {
     &::after {
-      background: url(/assets/dropdown.svg) no-repeat;
+      background: url(../../assets/dropdown.svg) no-repeat;
       content: "";
       background-position: center;
       padding: 0 0.85rem;
@@ -63,7 +63,7 @@ $loadingBarShadow: inset -2px -2px 0 0 #fffcfc, inset 2px 2px 0 0 #000;
 
 .search-btn-text {
   &::before {
-    background-image: url(/assets/lupa.svg);
+    background-image: url(../../assets/lupa.svg);
     display: inline-block;
     content: "";
     width: 1rem;
@@ -76,7 +76,7 @@ $loadingBarShadow: inset -2px -2px 0 0 #fffcfc, inset 2px 2px 0 0 #000;
 
 .btn-capture.btn {
   &::before {
-    background-image: url(/assets/camera.svg);
+    background-image: url(../../assets/camera.svg);
     background-repeat: no-repeat;
     background-position: center;
     padding: 0 1rem;
@@ -90,7 +90,7 @@ $loadingBarShadow: inset -2px -2px 0 0 #fffcfc, inset 2px 2px 0 0 #000;
 
 .btn-done {
   &::before {
-    background-image: url(/assets/recording_dark.svg);
+    background-image: url(../../assets/recording_dark.svg);
     background-repeat: no-repeat;
     background-position: center;
     padding: 0 1rem;
@@ -106,7 +106,7 @@ $loadingBarShadow: inset -2px -2px 0 0 #fffcfc, inset 2px 2px 0 0 #000;
   input:placeholder-shown ~ button.searchbox-input-submit {
     .search-btn-text {
       &::before {
-        background-image: url(/assets/lupa_inactive.svg);
+        background-image: url(../../assets/lupa_inactive.svg);
       }
     }
   }

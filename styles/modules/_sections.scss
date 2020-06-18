@@ -15,6 +15,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2.75rem;
   &-logo-container {
     width: 55%;
     cursor: pointer;
@@ -39,13 +40,10 @@ header {
     align-items: center;
   }
   &-btn {
-    margin: 0.3rem;
+    margin-top: 0.3rem;
   }
-  &-theme-btn {
-    min-width: 10.5rem;
-  }
-  &-theme-btn-text.btn-text {
-    border-right: 1px dotted black;
+  &-theme-btn{
+    min-width: 10rem;
   }
   &-myGIFS-btn {
     padding: 0.65rem;
@@ -53,16 +51,19 @@ header {
   &-dropdown {
     &-container {
       display: flex;
+      position: relative;
       flex-direction: column;
       align-items: center;
+      margin: 0.8rem 0;
     }
 
     &-theme-options-container {
-      flex-direction: column;
-      align-items: flex-start;
-      width: 10.5rem;
       &.is-active {
         display: flex;
+        position: absolute;
+        top: 2.4rem;
+        width: 100%;
+        margin-bottom: 0;
       }
     }
     &-option-text {
@@ -73,20 +74,19 @@ header {
 
 main {
   padding: 0 1rem;
+  width: 100vw;
 }
 
 .create-gif {
   &-container {
-    // display: flex;
-    flex-direction: column;
-    padding: 0.25rem;
     &-subheader-wrapper {
       display: flex;
     }
     &-wrapper {
-      padding: 0.5rem;
-      padding-left: 1.5rem;
-      padding-right: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1rem 0 0.5rem 0;
     }
     &-buttons {
       display: grid;
@@ -98,6 +98,17 @@ main {
   &-subheader-content {
     font-weight: bold;
     margin-bottom: 0.5rem;
+  }
+  &-content{
+    &-wrapper{
+      width: 80%;
+      padding-left: 0.5rem;
+    }
+  }
+  &-button{
+    &-text{
+      padding: 0.40rem 0.33rem;
+    }
   }
 }
 

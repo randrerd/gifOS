@@ -1,4 +1,4 @@
-/*TEXT ELEMENTS AND INPUTS*/
+/*Basics*/
 
 p {
   @extend %fontStack;
@@ -37,6 +37,7 @@ h1 {
   width: 100%;
   padding: 0.45rem;
   margin-bottom: 0.75rem;
+  margin-top: 3rem;
 }
 
 h3,
@@ -45,50 +46,16 @@ h2 {
   padding: 0.25rem;
 }
 
-.gradient-header {
-  padding: 0.25rem;
-}
 
-input {
-  @extend %fontStack;
-}
-.searchbox {
-  &-container {
-    margin-bottom: 2rem;
-    padding: 0.5rem 0;
-  }
-  &-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 1rem;
-  }
-  &-input {
-    padding: 0.25rem;
-    width: 100%;
-    margin: 1rem;
-    &::placeholder{
-      font-size: 0.65rem;
-    }
-  }
-  &-input-submit-text {
-    @extend %fontStack;
-    display: flex;
-    padding: 0.45rem 1.75rem;
-    font-size: 0.8rem;
-  }
-}
-
-/*BUTTONS AND BARS*/
+/*Components*/
 
 .btn {
   padding: 1px;
   &.navbar-dropdown-theme-option {
-    width: 90%;
-    margin: 0.5rem;
-    padding: 0.35rem 1rem;
+    margin: 0.5rem 0;
     display: flex;
     align-self: center;
+    min-width: 80%;
   }
   &-text {
     @extend %fontStack;
@@ -102,9 +69,12 @@ input {
       border-left: 1px solid black;
     }
   }
-  &.done-btn{
+  &-finish{
     align-self: flex-end;
     margin-top: 2rem;
+  }
+  &-done{
+    align-self: center;
   }
 }
 .repeat-capture-btn{
@@ -137,6 +107,92 @@ input {
 .copy-gif-btn{
   margin-bottom: 0.8rem;
 }
+
+input {
+  @extend %fontStack;
+}
+.searchbox {
+  &-container {
+    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+  }
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  &-input {
+    padding: 0.5rem;
+    width: 100%;
+    margin: 1rem;
+    &::placeholder{
+      font-size: 0.65rem;
+    }
+  }
+  &-input-submit-text {
+    @extend %fontStack;
+    display: flex;
+    padding: 0.45rem 1.5rem 0.45rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+
+/*Objects*/
+
+.old-school-window{
+  flex-direction: column;
+  padding: 0.1rem 0.1rem;
+  padding-bottom: 0.55rem;
+  margin-bottom: 1.5rem;
+}
+.creating-phase-content-wrapper{
+  padding: 1rem 0.5rem;
+}
+
+.gif {
+  &-header-container {
+    display: flex;
+    padding: 0 0.25rem;
+    margin-bottom: 0.05rem;
+    align-items: center;
+  }
+  &-title-tagline {
+    visibility: visible;
+    padding: 0.35rem;
+  }
+  &-container {
+    margin-bottom: 1rem;
+    
+    &:hover .gif-title-tagline {
+      visibility: visible;
+    }
+  }
+  &-content {
+    &-wrapper{
+      height: 350px;
+      padding: 0.1rem;
+    }
+    &-img{
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    &-details-btn{
+    position: relative;
+    bottom: 2.75rem;
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  }
+  &-and-tagline-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+  }
+}
+
 .video{
   &-progress-bar{
     display: inline-block;
@@ -157,48 +213,4 @@ input {
 }
 }
 
-/*GIF CONTAINERS AND CONTENT*/
-.gif {
-  &-header-container {
-    display: flex;
-    padding: 0 0.25rem;
-    margin-bottom: 0.3rem;
-    align-items: center;
-  }
-  &-title-tagline {
-    visibility: visible;
-    padding: 0.35rem;
-  }
-  &-container {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin-bottom: 1rem;
-    &:hover .gif-title-tagline {
-      visibility: visible;
-    }
-  }
-  &-content-details-btn {
-    position: relative;
-    bottom: 2.75rem;
-    margin-left: 0.5rem;
-    padding: 0.5rem 1rem;
-  }
-}
 
-
-/*ICONS CREATING PHASE*/
-
-.small-window-icon {
-  position: absolute;
-  left: 30px;
-  align-self: center;
-  margin-bottom: 1rem;
-}
-
-/*GENERAL ELEMENTS*/
-.vaporwave-window{
-  display: flex;
-  flex-direction: column;
-  margin: 0.7rem;
-}

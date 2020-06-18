@@ -1,38 +1,115 @@
+/*Section Specific Elements*/
 
-body{
-    background-color: $backgroundColor;
+body {
+  background-color: $backgroundColor;
 }
-.gradient-header, .gradient-background, .gif-header-container, .gif-title-tagline{
-    background-image: $gradient;
+header {
+  box-shadow: 0 1px 0 0 $textDark;
+}
+.create-gif-container-content{
+  color: $createPhaseTextColor;
 }
 
-/*BASICS*/
-h2, h3, .header-content, .gif-content-details-btn {
-    color: $secondaryTextColor;
+/*Basics*/
+h1 {
+  background: $headerBackgroundColor;
+  border: 1px solid #cca6c9;
+  box-shadow: $headerShadow;
+  color: $textDark;
 }
-span{
-    color: $textColor;
-    &.navbar-dropdown-option-text{
-        color: #6949a0;
+h2,
+h3,
+.header-content,
+.gif-content-details-btn {
+  color: $secondaryTextColor;
+}
+a{
+  color: $textColor;
+}
+p {
+  color: $textDark;
+}
+span {
+  color: $textColor;
+  &.navbar-dropdown-option-text {
+    color: #6949a0;
+  }
+}
+
+.gradient-header,
+.gradient-background,
+.gif-header-container,
+.gif-title-tagline {
+  background-image: $gradient;
+}
+
+/*Components*/
+.btn {
+  background-color: $primaryColor;
+  box-shadow: $primaryShadow;
+  border: 1px solid $textDark;
+  &:hover {
+    background-color: $primaryColorHover;
+  }
+  &-text{
+    &.navbar-theme-btn-text{
+      border-right: 1px solid $textDark;
     }
-}
-
-
-/*COMPONENTS*/
-.btn{
-    background-color: $primaryColor;
-    box-shadow: $primaryShadow;
-    border: 1px solid $textColor;
-    &:hover{
-        background-color: $primaryColorHover;
-    }
-}
-input.searchbox-input:placeholder-shown{
-    &~ .searchbox-input-submit{
+  }
+  &.btn-light {
+    background-color: $secondaryBtnColor;
+  }
+  &.navbar-dropdown-theme-option {
+    background-color: $thirdBtnColor;
+    box-shadow: $itemShadow;
     border: 1px solid gray;
-    background-color: $windowBackgroundColor;
-    }   
-    &~ .searchbox-input-submit .searchbox-input-submit-text{
-        color: $textColorUnactive;
+  }
+  &-done{
+    background-color: $doneBtnColor;
+    box-shadow: $doneBtnColorShadow;
+    &-text{
+      color: $secondaryTextColor;
+
     }
+  }
+}
+
+.searchbox-input {
+  box-shadow: $inputBarShadow;
+  &:placeholder-shown {
+    & ~ .searchbox-input-submit {
+      border: 1px solid gray;
+      background-color: $windowBackgroundColor;
+    }
+    & ~ .searchbox-input-submit .searchbox-input-submit-text {
+      color: $textColorUnactive;
+    }
+  }
+}
+
+/*Objects*/
+.old-school-window {
+  background-color: $windowBackgroundColor;
+  box-shadow: $windowBackgroundShadow;
+}
+.loading-animation {
+  background: $gradient;
+  color: transparent;
+  background-size: 400% 400%;
+  animation: loading-animation 2s ease-in-out infinite;
+}
+.gif {
+  &-container {
+    box-shadow: $gifContainerShadow;
+  }
+  &-content{
+    &-details-btn{
+      background: $secondaryColor;
+      box-shadow: $secondaryShadow;
+      border: 1px solid $secondaryColorBorder;
+      &:hover{
+        background: $secondaryColorHover;
+      }
+    }
+  }
 }

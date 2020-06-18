@@ -1,9 +1,2 @@
-<<<<<<< HEAD
 .vscode/
 *.css.map
-=======
-.vscode
-/styles/style.css.map
-/styles/themes/sailor_day.css.map
-/styles/themes/sailor_night.css.map
->>>>>>> b7ddbfb2621edd5f8483b9a09c8705515c751d94

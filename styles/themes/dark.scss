@@ -2,22 +2,29 @@ $backgroundColor: #110038;
 
 $textColor: #fff;
 $secondaryTextColor: #fff;
-$textColorUnactive: #8F8F8F;
+$textColorUnactive: #8f8f8f;
 $textColorBtn: $textColor;
+$headerBackgroundColor: #fffafe;
+$textDark: #110038;
+$textLight: $secondaryTextColor;
 
-$primaryColor: #EE3EFE;
-$primaryColorHover: #CE36DB;
-$primaryShadow: inset -1px -1px 0 0 #a72cb3,
+
+
+$primaryColor: #ee3efe;
+$primaryColorHover: #ce36db;
+$primaryShadow: inset -1px -1px 0 0 #997d97,
   inset 1px 1px 0 0 $secondaryTextColor;
 
-$secondaryColor: #2124B3;
+$secondaryColor: #2124b3;
 $secondaryColorHover: #110038;
-$secondaryShadow: inset -2px -2px 0 0 #2124B3,
+$secondaryShadow: inset -2px -2px 0 0 #2124b3,
   inset 2px 2px 0 0 $secondaryTextColor;
-$secondaryColorBorder: #4C2F99;
+$secondaryColorBorder: #4c2f99;
+$createPhaseTextColor: #110038;
 
 $secondaryBtnColor: $backgroundColor;
 $secondaryBtnColorHover: $backgroundColor;
+$thirdBtnColor: #cccccc;
 
 $doneBtnColor: #ff6161;
 $doneBtnColorShadow: inset -1px -1px 0 0 #993a3a,
@@ -28,53 +35,81 @@ $progressBlockUnfilled: #999999;
 
 $gradient: linear-gradient(270deg, $primaryColor 0%, $secondaryColor 100%);
 
-$windowBackgroundColor: #B4B4B4;
+$windowBackgroundColor: #b4b4b4;
 $windowBackgroundShadow: inset -2px -2px 0 0 $textColorUnactive,
   inset 2px 2px 0 0 $secondaryTextColor;
 
-$inputBarShadow: inset -2px -2px 0 0 #E6E6E6,
-  inset 2px 2px 0 0 #000;
-$itemShadow: inset -1px -1px 0 0 #b4b4b4,
-  inset 1px 1px 0 0 $secondaryTextColor;
+$headerShadow: inset -2px -2px 0 0 #e6dce4, inset 2px 2px 0 0 #110038;
+$inputBarShadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
+$itemShadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 $secondaryTextColor;
 $loadingBarShadow: inset 2px 2px 0 0 #e6e6e6, inset -2px -2px 0 0 #000;
+$gifContainerShadow: inset -1px -1px 0 0 $textColorUnactive,
+  inset 1px 1px 0 0 $secondaryTextColor;
 
 .navbar {
-  &-logo-container {
+  &-logo-placeholder {
     background-image: url(/assets/gifOF_logo_dark.png);
   }
 
   &-theme-btn {
     &::after {
-      background-image: url(/assets/dropdown.svg);
+      background: url(/assets/dropdown.svg) no-repeat;
+      content: "";
+      background-position: center;
+      padding: 0 0.85rem;
     }
   }
 }
 
-.search-btn-text{
-    &::before{
-        background-image: url(/assets/lupa_light.svg);
-    }
+.search-btn-text {
+  &::before {
+    background-image: url(/assets/lupa_light.svg);
+    display: inline-block;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    background-repeat: no-repeat;
+    margin-right: 0.3rem;
+    background-position: center;
+  }
 }
 
-.btn-capture-text{
-    &::before{
-        background-image: url(/assets/camera_light.svg);
-    }
+.btn-capture.btn {
+  &::before {
+    background-image: url(/assets/camera_light.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0 1rem;
+    display: inline-block;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    white-space: break-spaces;
+  }
 }
 
-.btn-done-text{
-    &::before{
-        background-image: url(/assets/recording.svg);
-    }
+.btn-done {
+  &::before {
+    background-image: url(/assets/recording.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0 1rem;
+    display: inline-block;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    white-space: break-spaces;
+  }
 }
 
-.searchbox-wrapper{
-    input:placeholder-shown ~ button.searchbox-input-submit {
-        .search-btn-text {
-            background-image: url(/assets/lupa-inactive-dark.svg);
-        }
+.searchbox-wrapper {
+  input:placeholder-shown ~ button.searchbox-input-submit {
+    .search-btn-text {
+      &::before {
+        background-image: url(/assets/lupa-inactive-dark.svg);
+      }
     }
+  }
 }
 
-
-@import 'colorsheet';
+@import "colorsheet";

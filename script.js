@@ -8,9 +8,12 @@ const navbarSection = (() => {
   const $chooseThemeBtn = document.querySelector(".navbar-theme-btn");
   const $startCreatingPhaseBtn = document.querySelector(".create-btn");
   const $myGifsBtn = document.querySelector('.navbar-myGIFS-btn')
+  const $lightThemeBtn = document.querySelector('.light-theme-btn')
+  const $darkThemeBtn = document.querySelector('.dark-theme-btn');
   
 
   /*SECTIONS BINDINGS*/
+  const $linkedTheme = document.querySelector('.link-theme');
   const $themeOptionsContainer = document.querySelector(".navbar-dropdown-theme-options-container");
   const $searchboxContainer = document.querySelector('.searchbox-container');
   const $suggestionsContainer = document.querySelector('.suggestions-container');
@@ -26,6 +29,14 @@ const navbarSection = (() => {
   const $creatingPhase6 = document.querySelector('.creating-phase-step6');
   
   /*EVENT LISTENERS*/
+  $lightThemeBtn.onclick = function () {
+    $linkedTheme.setAttribute('href','styles/themes/sailor_day.css');
+  }
+  $darkThemeBtn.onclick = function () {
+    $linkedTheme.setAttribute('href','styles/themes/sailor_night.css');
+  }
+
+
   $chooseThemeBtn.onclick = function () {
     $themeOptionsContainer.classList.toggle("is-active");
   };

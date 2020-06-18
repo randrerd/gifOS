@@ -1,37 +1,86 @@
-.navbar-logo-container {
+.navbar-logo-placeholder {
   background-image: url(/assets/gifOF_logo_dark.png);
 }
 .navbar-theme-btn::after {
-  background-image: url(/assets/dropdown.svg);
+  background: url(/assets/dropdown.svg) no-repeat;
+  content: "";
+  background-position: center;
+  padding: 0 0.85rem;
 }
 
 .search-btn-text::before {
   background-image: url(/assets/lupa_light.svg);
+  display: inline-block;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-repeat: no-repeat;
+  margin-right: 0.3rem;
+  background-position: center;
 }
 
-.btn-capture-text::before {
+.btn-capture.btn::before {
   background-image: url(/assets/camera_light.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0 1rem;
+  display: inline-block;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  white-space: break-spaces;
 }
 
-.btn-done-text::before {
+.btn-done::before {
   background-image: url(/assets/recording.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0 1rem;
+  display: inline-block;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  white-space: break-spaces;
 }
 
-.searchbox-wrapper input:placeholder-shown ~ button.searchbox-input-submit .search-btn-text {
+.searchbox-wrapper input:placeholder-shown ~ button.searchbox-input-submit .search-btn-text::before {
   background-image: url(/assets/lupa-inactive-dark.svg);
 }
 
+/*Section Specific Elements*/
 body {
   background-color: #110038;
 }
 
-.gradient-header, .gradient-background, .gif-header-container, .gif-title-tagline {
-  background-image: linear-gradient(270deg, #EE3EFE 0%, #2124B3 100%);
+header {
+  box-shadow: 0 1px 0 0 #110038;
 }
 
-/*BASICS*/
-h2, h3, .header-content, .gif-content-details-btn {
+.create-gif-container-content {
+  color: #110038;
+}
+
+/*Basics*/
+h1 {
+  background: #fffafe;
+  border: 1px solid #cca6c9;
+  box-shadow: inset -2px -2px 0 0 #e6dce4, inset 2px 2px 0 0 #110038;
+  color: #110038;
+}
+
+h2,
+h3,
+.header-content,
+.gif-content-details-btn {
   color: #fff;
+}
+
+a {
+  color: #fff;
+}
+
+p {
+  color: #110038;
 }
 
 span {
@@ -41,22 +90,75 @@ span.navbar-dropdown-option-text {
   color: #6949a0;
 }
 
-/*COMPONENTS*/
-.btn {
-  background-color: #EE3EFE;
-  box-shadow: inset -1px -1px 0 0 #a72cb3, inset 1px 1px 0 0 #fff;
-  border: 1px solid #fff;
-}
-.btn:hover {
-  background-color: #CE36DB;
+.gradient-header,
+.gradient-background,
+.gif-header-container,
+.gif-title-tagline {
+  background-image: linear-gradient(270deg, #ee3efe 0%, #2124b3 100%);
 }
 
-input.searchbox-input:placeholder-shown ~ .searchbox-input-submit {
-  border: 1px solid gray;
-  background-color: #B4B4B4;
+/*Components*/
+.btn {
+  background-color: #ee3efe;
+  box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #fff;
+  border: 1px solid #110038;
 }
-input.searchbox-input:placeholder-shown ~ .searchbox-input-submit .searchbox-input-submit-text {
-  color: #8F8F8F;
+.btn:hover {
+  background-color: #ce36db;
+}
+.btn-text.navbar-theme-btn-text {
+  border-right: 1px solid #110038;
+}
+.btn.btn-light {
+  background-color: #110038;
+}
+.btn.navbar-dropdown-theme-option {
+  background-color: #cccccc;
+  box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #fff;
+  border: 1px solid gray;
+}
+.btn-done {
+  background-color: #ff6161;
+  box-shadow: inset -1px -1px 0 0 #993a3a, inset 1px 1px 0 0 #fff;
+}
+.btn-done-text {
+  color: #fff;
+}
+
+.searchbox-input {
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
+}
+.searchbox-input:placeholder-shown ~ .searchbox-input-submit {
+  border: 1px solid gray;
+  background-color: #b4b4b4;
+}
+.searchbox-input:placeholder-shown ~ .searchbox-input-submit .searchbox-input-submit-text {
+  color: #8f8f8f;
+}
+
+/*Objects*/
+.old-school-window {
+  background-color: #b4b4b4;
+  box-shadow: inset -2px -2px 0 0 #8f8f8f, inset 2px 2px 0 0 #fff;
+}
+
+.loading-animation {
+  background: linear-gradient(270deg, #ee3efe 0%, #2124b3 100%);
+  color: transparent;
+  background-size: 400% 400%;
+  animation: loading-animation 2s ease-in-out infinite;
+}
+
+.gif-container {
+  box-shadow: inset -1px -1px 0 0 #8f8f8f, inset 1px 1px 0 0 #fff;
+}
+.gif-content-details-btn {
+  background: #2124b3;
+  box-shadow: inset -2px -2px 0 0 #2124b3, inset 2px 2px 0 0 #fff;
+  border: 1px solid #4c2f99;
+}
+.gif-content-details-btn:hover {
+  background: #110038;
 }
 
 /*# sourceMappingURL=sailor_night.css.map */

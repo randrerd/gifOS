@@ -27,11 +27,10 @@ img {
 
 a {
   cursor: default;
-  color: black;
 }
 
 /* FONTSTACKS */
-header .header-content, .btn-text, .searchbox-input-submit-text, input, h1, a, .numbered-list li, p {
+header .header-content, .searchbox-input-submit-text, input, .btn-text, h1, a, .numbered-list li, p {
   font-family: "Chakra Petch", Arial, sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
@@ -57,7 +56,7 @@ html {
 }
 
 /*Modules*/
-/*TEXT ELEMENTS AND INPUTS*/
+/*Basics*/
 .numbered-list {
   counter-reset: list;
 }
@@ -86,6 +85,7 @@ h1 {
   width: 100%;
   padding: 0.45rem;
   margin-bottom: 0.75rem;
+  margin-top: 3rem;
 }
 
 h3,
@@ -93,44 +93,15 @@ h2 {
   padding: 0.25rem;
 }
 
-.gradient-header {
-  padding: 0.25rem;
-}
-
-.searchbox-container {
-  margin-bottom: 2rem;
-  padding: 0.5rem 0;
-}
-.searchbox-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 1rem;
-}
-.searchbox-input {
-  padding: 0.25rem;
-  width: 100%;
-  margin: 1rem;
-}
-.searchbox-input::placeholder {
-  font-size: 0.65rem;
-}
-.searchbox-input-submit-text {
-  display: flex;
-  padding: 0.45rem 1.75rem;
-  font-size: 0.8rem;
-}
-
-/*BUTTONS AND BARS*/
+/*Components*/
 .btn {
   padding: 1px;
 }
 .btn.navbar-dropdown-theme-option {
-  width: 90%;
-  margin: 0.5rem;
-  padding: 0.35rem 1rem;
+  margin: 0.5rem 0;
   display: flex;
   align-self: center;
+  min-width: 80%;
 }
 .btn-text {
   padding: 0.45rem 1.75rem;
@@ -143,9 +114,12 @@ h2 {
 .btn-text.left-border {
   border-left: 1px solid black;
 }
-.btn.done-btn {
+.btn-finish {
   align-self: flex-end;
   margin-top: 2rem;
+}
+.btn-done {
+  align-self: center;
 }
 
 .repeat-capture-btn {
@@ -184,6 +158,79 @@ h2 {
   margin-bottom: 0.8rem;
 }
 
+.searchbox-container {
+  margin-bottom: 2rem;
+  padding: 0.5rem 0;
+}
+.searchbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+.searchbox-input {
+  padding: 0.5rem;
+  width: 100%;
+  margin: 1rem;
+}
+.searchbox-input::placeholder {
+  font-size: 0.65rem;
+}
+.searchbox-input-submit-text {
+  display: flex;
+  padding: 0.45rem 1.5rem 0.45rem 1rem;
+  font-size: 0.8rem;
+}
+
+/*Objects*/
+.old-school-window {
+  flex-direction: column;
+  padding: 0.1rem 0.1rem;
+  padding-bottom: 0.55rem;
+  margin-bottom: 1.5rem;
+}
+
+.creating-phase-content-wrapper {
+  padding: 1rem 0.5rem;
+}
+
+.gif-header-container {
+  display: flex;
+  padding: 0 0.25rem;
+  margin-bottom: 0.05rem;
+  align-items: center;
+}
+.gif-title-tagline {
+  visibility: visible;
+  padding: 0.35rem;
+}
+.gif-container {
+  margin-bottom: 1rem;
+}
+.gif-container:hover .gif-title-tagline {
+  visibility: visible;
+}
+.gif-content-wrapper {
+  height: 350px;
+  padding: 0.1rem;
+}
+.gif-content-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.gif-content-details-btn {
+  position: relative;
+  bottom: 2.75rem;
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+.gif-and-tagline-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+}
+
 .video-progress-bar {
   display: inline-block;
   height: 100%;
@@ -202,48 +249,6 @@ h2 {
   align-self: center;
 }
 
-/*GIF CONTAINERS AND CONTENT*/
-.gif-header-container {
-  display: flex;
-  padding: 0 0.25rem;
-  margin-bottom: 0.3rem;
-  align-items: center;
-}
-.gif-title-tagline {
-  visibility: visible;
-  padding: 0.35rem;
-}
-.gif-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-bottom: 1rem;
-}
-.gif-container:hover .gif-title-tagline {
-  visibility: visible;
-}
-.gif-content-details-btn {
-  position: relative;
-  bottom: 2.75rem;
-  margin-left: 0.5rem;
-  padding: 0.5rem 1rem;
-}
-
-/*ICONS CREATING PHASE*/
-.small-window-icon {
-  position: absolute;
-  left: 30px;
-  align-self: center;
-  margin-bottom: 1rem;
-}
-
-/*GENERAL ELEMENTS*/
-.vaporwave-window {
-  display: flex;
-  flex-direction: column;
-  margin: 0.7rem;
-}
-
 header {
   width: 100vw;
   margin-top: 1px;
@@ -259,6 +264,7 @@ header .header-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2.75rem;
 }
 .navbar-logo-container {
   width: 55%;
@@ -284,29 +290,27 @@ header .header-content {
   align-items: center;
 }
 .navbar-btn {
-  margin: 0.3rem;
+  margin-top: 0.3rem;
 }
 .navbar-theme-btn {
-  min-width: 10.5rem;
-}
-.navbar-theme-btn-text.btn-text {
-  border-right: 1px dotted black;
+  min-width: 10rem;
 }
 .navbar-myGIFS-btn {
   padding: 0.65rem;
 }
 .navbar-dropdown-container {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
-}
-.navbar-dropdown-theme-options-container {
-  flex-direction: column;
-  align-items: flex-start;
-  width: 10.5rem;
+  margin: 0.8rem 0;
 }
 .navbar-dropdown-theme-options-container.is-active {
   display: flex;
+  position: absolute;
+  top: 2.4rem;
+  width: 100%;
+  margin-bottom: 0;
 }
 .navbar-dropdown-option-text {
   padding: 0.35rem 1rem;
@@ -314,19 +318,17 @@ header .header-content {
 
 main {
   padding: 0 1rem;
+  width: 100vw;
 }
 
-.create-gif-container {
-  flex-direction: column;
-  padding: 0.25rem;
-}
 .create-gif-container-subheader-wrapper {
   display: flex;
 }
 .create-gif-container-wrapper {
-  padding: 0.5rem;
-  padding-left: 1.5rem;
-  padding-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem 0 0.5rem 0;
 }
 .create-gif-container-buttons {
   display: grid;
@@ -337,6 +339,13 @@ main {
 .create-gif-subheader-content {
   font-weight: bold;
   margin-bottom: 0.5rem;
+}
+.create-gif-content-wrapper {
+  width: 80%;
+  padding-left: 0.5rem;
+}
+.create-gif-button-text {
+  padding: 0.4rem 0.33rem;
 }
 
 .capture-video-container {

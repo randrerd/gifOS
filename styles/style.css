@@ -52,7 +52,7 @@ h2 {
 }
 
 html {
-  font-size: calc(1em + 1vw);
+  font-size: calc(1em + 0.5vw);
 }
 
 /*Modules*/
@@ -106,7 +106,6 @@ h2 {
 .btn-text {
   padding: 0.45rem 1.75rem;
   display: inline-block;
-  font-size: 0.8rem;
 }
 .btn-text .cp {
   padding: 0.25rem 1.45rem;
@@ -151,7 +150,6 @@ h2 {
 .play-btn-text {
   display: inline-block;
   padding: 0.15rem;
-  font-size: 0.65rem;
 }
 
 .copy-gif-btn {
@@ -168,18 +166,19 @@ h2 {
   align-items: center;
   padding: 0 1rem;
 }
+@media only screen and (min-width: 992px) {
+  .searchbox-wrapper {
+    flex-direction: row;
+  }
+}
 .searchbox-input {
   padding: 0.5rem;
   width: 100%;
   margin: 1rem;
 }
-.searchbox-input::placeholder {
-  font-size: 0.65rem;
-}
 .searchbox-input-submit-text {
   display: flex;
   padding: 0.45rem 1.5rem 0.45rem 1rem;
-  font-size: 0.8rem;
 }
 
 /*Objects*/
@@ -194,6 +193,18 @@ h2 {
   padding: 1rem 0.5rem;
 }
 
+@media only screen and (min-width: 992px) {
+  .gif-large {
+    grid-column: span 2;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .gif-items-container {
+    display: grid;
+    grid-template: 1fr/repeat(4, 1fr);
+    gap: 0.7rem;
+  }
+}
 .gif-header-container {
   display: flex;
   padding: 0 0.25rem;
@@ -203,6 +214,14 @@ h2 {
 .gif-title-tagline {
   visibility: visible;
   padding: 0.35rem;
+}
+@media only screen and (min-width: 992px) {
+  .gif-title-tagline {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    visibility: hidden;
+  }
 }
 .gif-container {
   margin-bottom: 1rem;
@@ -230,6 +249,11 @@ h2 {
   flex-direction: column;
   height: 350px;
 }
+@media only screen and (min-width: 992px) {
+  .gif-and-tagline-wrapper {
+    position: relative;
+  }
+}
 
 .video-progress-bar {
   display: inline-block;
@@ -255,7 +279,6 @@ header {
   margin-bottom: 2rem;
 }
 header .header-content {
-  font-size: 0.6em;
   padding: 0 0.2rem;
 }
 
@@ -266,11 +289,22 @@ header .header-content {
   align-items: center;
   margin-bottom: 2.75rem;
 }
+@media only screen and (min-width: 992px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
 .navbar-logo-container {
   width: 55%;
   cursor: pointer;
   display: flex;
   justify-content: center;
+}
+@media only screen and (min-width: 992px) {
+  .navbar-logo-container {
+    width: initial;
+  }
 }
 .navbar-return-arrow {
   position: absolute;
@@ -289,11 +323,23 @@ header .header-content {
   flex-direction: column;
   align-items: center;
 }
+@media only screen and (min-width: 992px) {
+  .navbar-buttons-wrapper {
+    flex-direction: row;
+    width: 43%;
+    justify-content: space-evenly;
+  }
+}
 .navbar-btn {
   margin-top: 0.3rem;
 }
 .navbar-theme-btn {
   min-width: 10rem;
+}
+@media only screen and (min-width: 992px) {
+  .navbar-theme-btn {
+    min-width: initial;
+  }
 }
 .navbar-myGIFS-btn {
   padding: 0.65rem;
@@ -319,6 +365,11 @@ header .header-content {
 main {
   padding: 0 1rem;
   width: 100vw;
+}
+@media only screen and (min-width: 992px) {
+  main {
+    padding: 0 2.5rem;
+  }
 }
 
 .create-gif-container-subheader-wrapper {

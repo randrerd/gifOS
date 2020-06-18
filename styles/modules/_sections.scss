@@ -5,18 +5,25 @@ header {
 
   .header-content {
     @extend %fontStack;
-    font-size: 0.6em;
+    // font-size: 0.6em;
     padding: 0 0.2rem;
   }
 }
 
 .navbar {
+  @include responsive(desktops){
+    flex-direction: row;
+    justify-content: space-between;
+  }
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 2.75rem;
   &-logo-container {
+    @include responsive(desktops){
+      width: initial;
+    }
     width: 55%;
     cursor: pointer;
     display: flex;
@@ -35,6 +42,11 @@ header {
     background-size: auto;
   }
   &-buttons-wrapper {
+    @include responsive(desktops) {
+      flex-direction: row;
+      width: 43%;
+      justify-content: space-evenly;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,6 +55,9 @@ header {
     margin-top: 0.3rem;
   }
   &-theme-btn{
+    @include responsive(desktops){
+      min-width: initial;
+    }
     min-width: 10rem;
   }
   &-myGIFS-btn {
@@ -73,6 +88,9 @@ header {
 }
 
 main {
+  @include responsive(desktops){
+    padding: 0 2.5rem;
+  }
   padding: 0 1rem;
   width: 100vw;
 }

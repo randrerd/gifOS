@@ -127,7 +127,7 @@ h2 {
 }
 
 .gif-times-btn {
-  background-image: url(/assets/close.svg);
+  background-image: url(../../assets/close.svg);
   background-position: center;
   background-repeat: no-repeat;
   width: 1.15em;

@@ -179,9 +179,10 @@ function getRandomArbitrary(min, max) {
 function addHashtagToWords(string) {
   let sentence = string.split(" ");
   let newSentence = "";
-  sentence.forEach((word) => {
+  for (let i = 0; i <= 3; i++) {
+    let word = sentence[i];
     newSentence += `#${word} `;
-  });
+  }
   return newSentence;
 }
 

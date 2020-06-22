@@ -383,6 +383,7 @@ header .header-content {
   flex-direction: column;
   align-items: center;
   margin: 0.8rem 0;
+  z-index: 5;
 }
 .navbar-dropdown-theme-options-container.is-active {
   display: flex;

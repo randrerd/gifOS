@@ -1,5 +1,4 @@
 header {
-  width: 100vw;
   margin-top: 1px;
   margin-bottom: 2rem;
 
@@ -30,6 +29,9 @@ header {
     justify-content: center;
   }
   &-return-arrow {
+    @include responsive(desktops){
+      left: 0.8rem
+    }
     position: absolute;
     left: 5rem;
     align-self: center;
@@ -55,9 +57,6 @@ header {
     margin-top: 0.3rem;
   }
   &-theme-btn{
-    @include responsive(desktops){
-      min-width: initial;
-    }
     min-width: 10rem;
   }
   &-myGIFS-btn {
@@ -90,6 +89,7 @@ header {
 main {
   @include responsive(desktops){
     padding: 0 2.5rem;
+    width: initial;
   }
   padding: 0 1rem;
   width: 100vw;
@@ -169,7 +169,7 @@ main {
 .uploading{
   &-video{
     &-container{
-      display: flex;
+      // display: flex;
       flex-direction: column;
     }
   &-content-wrapper{
@@ -215,5 +215,12 @@ main {
     }
   }
 }
-
+.create{
+  &-main{
+    &-container{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
 

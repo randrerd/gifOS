@@ -153,6 +153,11 @@ input {
 .creating-phase-content-wrapper{
   padding: 1rem 0.5rem;
 }
+.creating-phase-window{
+  align-self: center;
+  width: 55%;
+  min-height: 15rem;
+}
 
 .gif {
   &-large{
@@ -163,8 +168,9 @@ input {
   &-items-container{
     @include responsive(desktops){
       display:grid;
-      grid-template: 1fr/repeat(4, 1fr);
-      gap: 0.7rem
+      grid-template-columns: repeat( auto-fill, minmax(12rem, 1fr) );
+      gap: 0.7rem;
+      grid-auto-flow: row dense;
     }
   }
   &-header-container {
@@ -173,13 +179,17 @@ input {
     margin-bottom: 0.05rem;
     align-items: center;
   }
+  &-title{
+    max-height: 1.2rem;
+    overflow: hidden;
+  }
   &-title-tagline {
     @include responsive(desktops){
-      position: absolute;
-      bottom: 0;
-      width: 100%;
       visibility:hidden;
     }
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     visibility: visible;
     padding: 0.35rem;
   }
@@ -210,10 +220,14 @@ input {
   &-and-tagline-wrapper{
     @include responsive(desktops){
       position: relative;
+      margin: 0;
     }
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 350px;
+    margin-bottom: 3rem;
+    padding: 0.1rem;
   }
 }
 

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GifOS Website</title>
+
+    <link
+      class="link-theme"
+      rel="stylesheet"
+      href="styles/themes/sailor_day.css"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <p class="gradient-background header-content">
+        ¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número
+        de visitas: 12.765.803
+      </p>
+    </header>
+    <nav class="navbar">
+      <div class="navbar-logo-container">
+        <img src="assets/arrow.svg" alt="" class="navbar-return-arrow hidden" />
+        <div class="navbar-logo-placeholder"></div>
+      </div>
+     
+    </nav>
+ 
+  <main class="create-main-container" id="content-container">
+    <div
+      class="old-school-window create-gif-container creating-phase-window creating-phase-step1 hidden"
+    >
+      <h3 class="gradient-header">Crear Guifos</h3>
+      <div class="creating-phase-content-wrapper create-gif-container-wrapper">
+        <img
+          class="small-window-icon"
+          src="assets/window_img.png"
+          alt="small window icon"
+        />
+        <div class="create-gif-content-wrapper">
+          <div class="create-gif-container-subheader-wrapper">
+            <p class="create-gif-subheader-content">
+              Aquí podras crear tus propios guifos
+            </p>
+          </div>
+          <div class="create-gif-container-wrapper-content">
+            <p class="create-gif-container-content">
+              Crear tu <em>guifo</em> es muy fácil, graba cualquier imagen con
+              tu cámara y obtén guifos personalizados. Los pasos para crear tu
+              guifo son:
+            </p>
+            <ol class="numbered-list">
+              <li>
+                Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
+              </li>
+              <li>Capturar tu momento guifo</li>
+              <li>Revisar el momento</li>
+              <li>Listo para subir y compartir!</li>
+            </ol>
+            <p class="create-gif-container-content-question">
+              ¿Quieres comenzar a crear tu <em>guifo</em> ahora?
+            </p>
+          </div>
+          <div class="create-gif-container-buttons">
+            <button class="btn btn-light create-gif-cancel-btn cp-btn">
+              <span class="btn-text create-gif-button-text"> Cancelar</span>
+            </button>
+            <button class="btn create-gif-start-btn cp-btn">
+              <span class="btn-text create-gif-button-text">Comenzar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="old-school-window capture-video-container creating-phase-window creating-phase-step2 hidden"
+    >
+      <div class="capture-video-container-header-wrapper gif-header-container">
+        <h3>Un chequeo antes de empezar</h3>
+        <button class="gif-times-btn create-gif-cancel-btn"></button>
+      </div>
+      <div class="creating-phase-content-wrapper">
+        <video src="#"></video>
+        <button class="btn-capture btn cp-btn">
+          <span class="btn-capture-text btn-text left-border">Capturar</span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="old-school-window capturing-video-container creating-phase-window creating-phase-step3 hidden"
+    >
+      <div
+        class="capturing-video-container-header-wrapper gif-header-container"
+      >
+        <h3>Capturando tu Guifo</h3>
+        <button class="gif-times-btn create-gif-cancel-btn"></button>
+      </div>
+      <div class="creating-phase-content-wrapper">
+        <video src="#"></video>
+        <div class="capturing-video-container videodetails-wrapper">
+          <div class="videodetails-timer"></div>
+          <button class="btn-done btn">
+            <span class="btn-done-text btn-text left-border">Listo</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="old-school-window preview-video-container creating-phase-window creating-phase-step4 hidden"
+    >
+      <div
+        class="capturing-video-container-header-wrapper gif-header-container"
+      >
+        <h3>Vista Previa</h3>
+        <button class="gif-times-btn create-gif-cancel-btn"></button>
+      </div>
+      <div class="creating-phase-content-wrapper">
+        <video src="#"></video>
+        <div class="preview-video-container videodetails-wrapper">
+          <div class="videodetails-timer"></div>
+          <div class="preview-video-playbar-wrapper">
+            <button class="play-btn">
+              <span class="play-btn-text">
+                ▶
+              </span>
+            </button>
+            <div class="video-playbar-progress-wrapper">
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+              <span class="video-progress-bar playback-bar empty-block"></span>
+            </div>
+          </div>
+          <div class="preview-video-buttons-wrapper">
+            <button class="btn btn-light repeat-capture-btn">
+              <span class="btn-text"> Repetir Captura</span>
+            </button>
+            <button class="btn upload-btn">
+              <span class="btn-text">Subir Guifo</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="old-school-window uploading-video-container creating-phase-window creating-phase-step5 hidden"
+    >
+      <div
+        class="uploading-video-container-header-wrapper gif-header-container"
+      >
+        <h3>Subiendo Guifo</h3>
+        <button class="gif-times-btn"></button>
+      </div>
+      <div class="creating-phase-content-wrapper">
+        <div class="uploading-video-content-wrapper">
+          <img src="assets/globe_img.png" alt="a globe" />
+          <p class="uploading-video-text">Estamos subiendo tu guifo...</p>
+          <div class="video-playbar-progress-wrapper uploading-progress-bar">
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+            <span class="video-progress-bar uploading-bar empty-block"></span>
+          </div>
+          <div class="uploading-video-text-wrapper">
+            <p class="uploading-video-remaining-time">Tiempo restante:</p>
+            <p class="strikethrough">38 años</p>
+            <p class="uploading-video-remaining-time">algunos minutos</p>
+          </div>
+        </div>
+        <button class="btn btn-light uploading-video-cancel-btn">
+          <span class="btn-text">Cancelar</span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="old-school-window success-upload-container creating-phase-window creating-phase-step6 hidden"
+    >
+      <div class="success-upload-container-header-wrapper gif-header-container">
+        <h3>Guifo Subido Con Éxito</h3>
+        <button class="gif-times-btn"></button>
+      </div>
+      <div
+        class="success-upload-content-wrapper creating-phase-content-wrapper"
+      >
+        <video src="#"></video>
+        <div class="success-upload-content">
+          <p>Guifo creado con éxito</p>
+          <div class="success-buttons-wrapper">
+            <button class="btn-light copy-gif-btn">
+              <span class="btn-text"> Copiar Enlace Guifo</span>
+            </button>
+            <button class="btn-light download-gif-btn">
+              <span class="btn-text">Descargar Guifo</span>
+            </button>
+          </div>
+          <button class="btn btn-finish">
+            <span class="btn-text">Listo</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="js/create.js"></script>
+</body>
+</html>

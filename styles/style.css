@@ -193,6 +193,12 @@ h2 {
   padding: 1rem 0.5rem;
 }
 
+.creating-phase-window {
+  align-self: center;
+  width: 55%;
+  min-height: 15rem;
+}
+
 @media only screen and (min-width: 992px) {
   .gif-large {
     grid-column: span 2;
@@ -201,8 +207,9 @@ h2 {
 @media only screen and (min-width: 992px) {
   .gif-items-container {
     display: grid;
-    grid-template: 1fr/repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     gap: 0.7rem;
+    grid-auto-flow: row dense;
   }
 }
 .gif-header-container {
@@ -211,15 +218,19 @@ h2 {
   margin-bottom: 0.05rem;
   align-items: center;
 }
+.gif-title {
+  max-height: 1.2rem;
+  overflow: hidden;
+}
 .gif-title-tagline {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   visibility: visible;
   padding: 0.35rem;
 }
 @media only screen and (min-width: 992px) {
   .gif-title-tagline {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
     visibility: hidden;
   }
 }
@@ -245,13 +256,17 @@ h2 {
   padding: 0.5rem 1rem;
 }
 .gif-and-tagline-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 350px;
+  margin-bottom: 3rem;
+  padding: 0.1rem;
 }
 @media only screen and (min-width: 992px) {
   .gif-and-tagline-wrapper {
     position: relative;
+    margin: 0;
   }
 }
 
@@ -274,7 +289,6 @@ h2 {
 }
 
 header {
-  width: 100vw;
   margin-top: 1px;
   margin-bottom: 2rem;
 }
@@ -311,6 +325,11 @@ header .header-content {
   left: 5rem;
   align-self: center;
 }
+@media only screen and (min-width: 992px) {
+  .navbar-return-arrow {
+    left: 0.8rem;
+  }
+}
 .navbar-logo-placeholder {
   width: 7rem;
   height: 4rem;
@@ -335,11 +354,6 @@ header .header-content {
 }
 .navbar-theme-btn {
   min-width: 10rem;
-}
-@media only screen and (min-width: 992px) {
-  .navbar-theme-btn {
-    min-width: initial;
-  }
 }
 .navbar-myGIFS-btn {
   padding: 0.65rem;
@@ -369,6 +383,7 @@ main {
 @media only screen and (min-width: 992px) {
   main {
     padding: 0 2.5rem;
+    width: initial;
   }
 }
 
@@ -427,7 +442,6 @@ main {
 }
 
 .uploading-video-container {
-  display: flex;
   flex-direction: column;
 }
 .uploading-video-content-wrapper {
@@ -468,6 +482,11 @@ main {
   margin-bottom: 0.8rem;
 }
 .success-upload-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-main-container {
   display: flex;
   flex-direction: column;
 }

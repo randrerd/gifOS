@@ -51,8 +51,7 @@ const navbarSection = (() => {
   $myGifsBtn.onclick = function () {
     //Toggles 'hidden' class to show only MyGifs section
     hideElements($suggestionsSection, $trendingSection);
-    showElements($myGifsSection);
-    showElements($returnArrowBtn);
+    showElements($myGifsSection, $returnArrowBtn);
   };
   $startCreatingPhaseBtn.onclick = function () {
     window.location = "create.html";

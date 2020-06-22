@@ -72,6 +72,11 @@ span {
 
     }
   }
+  &.searchbox-suggestions-item{
+    background-color: $thirdBtnColor;
+    box-shadow: $itemShadow;
+    border: 1px solid gray;
+  }
 }
 
 .searchbox-input {

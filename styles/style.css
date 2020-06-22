@@ -113,12 +113,23 @@ h2 {
 .btn-text.left-border {
   border-left: 1px solid black;
 }
+.btn-text.searchbox-suggestions-text {
+  padding: 0.25rem 1.75rem;
+}
 .btn-finish {
   align-self: flex-end;
   margin-top: 2rem;
 }
 .btn-done {
   align-self: center;
+}
+.btn.searchbox-suggestions-item {
+  text-align: left;
+  width: 83%;
+  display: inline-block;
+  padding: 2px;
+  margin-left: 1.9rem;
+  margin-top: 0.5rem;
 }
 
 .repeat-capture-btn {
@@ -159,6 +170,7 @@ h2 {
 .searchbox-container {
   margin-bottom: 2rem;
   padding: 0.5rem 0;
+  position: relative;
 }
 .searchbox-wrapper {
   display: flex;
@@ -179,6 +191,13 @@ h2 {
 .searchbox-input-submit-text {
   display: flex;
   padding: 0.45rem 1.5rem 0.45rem 1rem;
+}
+.searchbox-suggestions-container {
+  padding: 1rem;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  top: 5rem;
 }
 
 /*Objects*/

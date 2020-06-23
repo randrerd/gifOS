@@ -1,6 +1,7 @@
 "use strict";
 
 //TO-DO: Infinite scrolling on trending section; searchSection.
+
 /*Global Constants */
 const $APIKey = "AtDXUGwf0oBU7IXtdm8Ztz3zUP1ct6nO";
 

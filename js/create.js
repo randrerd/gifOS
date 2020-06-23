@@ -20,13 +20,13 @@ const navbarSection = (() => {
   };
 
   function loadSetColorOption() {
-    sessionStorage.getItem("themeOption")
-      ? setColorOption(sessionStorage.getItem("themeOption"))
+    localStorage.getItem("themeOption")
+      ? setColorOption(localStorage.getItem("themeOption"))
       : setColorOption(themeOptions[0]);
   }
   function setColorOption(theme) {
     $themeStylesheetLink.setAttribute("href", `styles/themes/${theme}.css`);
-    sessionStorage.setItem("themeOption", `${theme}`);
+    localStorage.setItem("themeOption", `${theme}`);
   }
 })();
 

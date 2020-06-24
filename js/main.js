@@ -100,8 +100,9 @@ const searchSection = (() => {
   let isUserDoneWriting = false;
   let newItems = [];
 
-  //Local Functions
 
+
+  /*Autocomplete functions */
   async function getAutocompleteTerms(term) {
     try {
       let response = await fetch(
@@ -114,7 +115,6 @@ const searchSection = (() => {
     }
   }
 
-  
   $inputBar.onkeyup = function (e) {
     let searchTerm = $inputBar.value;
     console.log(e);
@@ -124,8 +124,8 @@ const searchSection = (() => {
         replacePlaceholders(termsArray.name);
       })
     });
-    //Hides the autocomplete container when ESC key is used and when 
-    //user deletes all input bar
+    //Hides the autocomplete container when ESC key is used or when 
+    //the user deletes all input bar
     if(e.keyCode === 27 || $inputBar.value === ''){
       hideElements($autocompleteContainer);
     }

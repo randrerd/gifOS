@@ -78,7 +78,11 @@ h2 {
   &-done {
     align-self: center;
   }
-  &.searchbox-suggestions-item {
+  &.searchbox{
+    &-input-submit{
+      margin-right: 0.2rem;
+    }
+  &-suggestions-item {
     text-align: left;
     width: 83%;
     display: inline-block;
@@ -86,6 +90,7 @@ h2 {
     margin-left: 1.9rem;
     margin-top: 0.5rem;
   }
+}
 }
 .repeat-capture-btn {
   margin-bottom: 0.5rem;
@@ -122,15 +127,16 @@ input {
   @extend %fontStack;
 }
 .searchbox {
-  &-container {
+  &-container.old-school-window {
     margin-bottom: 2rem;
-    padding: 0.5rem 0;
+    padding: 0.1rem 0.1rem 0.5rem 0.1rem;
     position: relative;
-    padding-bottom: 0;
+    
   }
   &-wrapper {
     @include responsive(desktops) {
       flex-direction: row;
+      padding: 0;
     }
     display: flex;
     flex-direction: column;
@@ -138,6 +144,9 @@ input {
     padding: 0 1rem;
   }
   &-input {
+    @include responsive(desktops){
+      margin: 0.6rem;
+    }
     padding: 0.5rem;
     width: 100%;
     margin: 1rem;

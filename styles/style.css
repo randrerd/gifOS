@@ -123,6 +123,9 @@ h2 {
 .btn-done {
   align-self: center;
 }
+.btn.searchbox-input-submit {
+  margin-right: 0.2rem;
+}
 .btn.searchbox-suggestions-item {
   text-align: left;
   width: 83%;
@@ -167,11 +170,10 @@ h2 {
   margin-bottom: 0.8rem;
 }
 
-.searchbox-container {
+.searchbox-container.old-school-window {
   margin-bottom: 2rem;
-  padding: 0.5rem 0;
+  padding: 0.1rem 0.1rem 0.5rem 0.1rem;
   position: relative;
-  padding-bottom: 0;
 }
 .searchbox-wrapper {
   display: flex;
@@ -182,12 +184,18 @@ h2 {
 @media only screen and (min-width: 992px) {
   .searchbox-wrapper {
     flex-direction: row;
+    padding: 0;
   }
 }
 .searchbox-input {
   padding: 0.5rem;
   width: 100%;
   margin: 1rem;
+}
+@media only screen and (min-width: 992px) {
+  .searchbox-input {
+    margin: 0.6rem;
+  }
 }
 .searchbox-input-submit-text {
   display: flex;

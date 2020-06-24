@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 //TO-DO: Infinite scrolling on trending section; searchSection.
 
@@ -86,7 +86,70 @@ const navbarSection = (() => {
   }
 })();
 
-const searchSection = (() => {})();
+const searchSection = (() => {
+  //DOM Cache
+  const $inputBar = document.querySelector(".searchbox-input");
+  const $autocompleteContainer = document.querySelector(
+    ".searchbox-suggestions-container"
+  );
+  const $autocompleteSuggestionItems = document.querySelectorAll(
+    ".searchbox-suggestions-text"
+  );
+
+  //Local Bindings
+  let isUserDoneWriting = false;
+  let newItems = [];
+
+  //Local Functions
+
+  async function getAutocompleteTerms(term) {
+    try {
+      let response = await fetch(
+        `https://api.giphy.com/v1/gifs/search/tags?api_key=${$APIKey}&q=${term}`
+      );
+      let data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  
+  $inputBar.onkeyup = function (e) {
+    let searchTerm = $inputBar.value;
+    console.log(e);
+    showElements($autocompleteContainer);
+    getAutocompleteTerms(searchTerm).then((data) => {
+      data.data.forEach((termsArray) => {
+        replacePlaceholders(termsArray.name);
+      })
+    });
+    //Hides the autocomplete container when ESC key is used and when 
+    //user deletes all input bar
+    if(e.keyCode === 27 || $inputBar.value === ''){
+      hideElements($autocompleteContainer);
+    }
+    //Removes the first four elements from the array to store the new suggestions
+    let oldItems = newItems.splice(0,4)
+  };
+
+  function replacePlaceholders(...suggestedTerms) {
+    for (let i = 0; i < suggestedTerms.length; i++) {
+      //Appends each suggested term to the newItems array
+      const suggestedTerm = suggestedTerms[i];
+      newItems.push(suggestedTerm) 
+      
+      for (let j = 0; j < $autocompleteSuggestionItems.length; j++) {
+        //Iterates over the existing placeholder elements and replaces
+        //the empty content with the suggested terms found on newItems
+        //array
+        const itemPlaceholder = $autocompleteSuggestionItems[j];
+        itemPlaceholder.textContent = newItems[j]
+        
+      }
+    }
+  }
+})();
 
 const suggestionsSection = (() => {
   /*DOM Cache*/
@@ -167,8 +230,6 @@ const trendingSection = (() => {
     }
   }
   getTrending();
-  
-
 })();
 
 /*Global functions*/

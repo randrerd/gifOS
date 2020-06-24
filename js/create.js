@@ -10,11 +10,12 @@ const navbarSection = (() => {
   /*Local Variables*/
   const themeOptions = ["sailor_day", "sailor_night"];
 
-  /*Event Listeners*/
-  window.onload = function () {
-    $returnArrowBtn.classList.remove("hidden");
-    loadSetColorOption();
-  };
+ 
+
+  $returnArrowBtn.classList.remove("hidden");
+  loadSetColorOption();
+  
+   /*Event Listeners*/
   $returnBtn.onclick = function () {
     window.location = "index.html";
   };

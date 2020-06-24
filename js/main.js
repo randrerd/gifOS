@@ -27,11 +27,8 @@ const navbarSection = (() => {
   /*Local variables*/
   const themeOptions = ["sailor_day", "sailor_night"];
 
-  /*Event Listeners*/
-  window.onload = () => {
-    //Calls functions on page load
-    loadSetColorOption();
-  };
+
+  loadSetColorOption();
   //When clicking outside the div containing the theme options, hides it
   //if visible
   document.onclick = function (e) {

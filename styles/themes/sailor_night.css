@@ -158,7 +158,9 @@ span.navbar-dropdown-option-text {
 }
 
 .gif-container {
-  box-shadow: inset -1px -1px 0 0 #8f8f8f, inset 1px 1px 0 0 #fff;
+  box-shadow: inset -2px -2px 0 0 #8f8f8f, inset 2px 2px 0 0 #fff;
+  background: #b4b4b4;
+  padding: 1px;
 }
 .gif-content-details-btn {
   background: #2124b3;

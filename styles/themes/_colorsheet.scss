@@ -108,7 +108,10 @@ span {
 }
 .gif {
   &-container {
-    box-shadow: $gifContainerShadow;
+    box-shadow: $windowBackgroundShadow;
+    background: $windowBackgroundColor;
+    padding: 1px;
+
   }
   &-content{
     &-details-btn{

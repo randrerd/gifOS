@@ -109,6 +109,9 @@ span.navbar-dropdown-option-text {
 .btn-text.navbar-theme-btn-text {
   border-right: 1px solid #110038;
 }
+.btn-text.searchbox-suggestions-text {
+  color: initial;
+}
 .btn.btn-light {
   background-color: #fff4fd;
 }

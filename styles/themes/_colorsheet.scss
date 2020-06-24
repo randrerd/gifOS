@@ -55,6 +55,9 @@ span {
     &.navbar-theme-btn-text{
       border-right: 1px solid $textDark;
     }
+    &.searchbox-suggestions-text{
+      color: initial;
+    }
   }
   &.btn-light {
     background-color: $secondaryBtnColor;

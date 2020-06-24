@@ -94,8 +94,8 @@ h2 {
   background-image: url(../assets/close.svg);
   background-position: center;
   background-repeat: no-repeat;
-  width: 1.15em;
-  height: 1em;
+  min-width: 1.2em;
+  min-height: 1.1em;
   cursor: pointer;
   margin-left: auto;
 }
@@ -195,9 +195,10 @@ input {
     padding: 0 0.25rem;
     margin-bottom: 0.05rem;
     align-items: center;
+    height: 1.2rem;
   }
   &-title {
-    max-height: 1.2rem;
+    max-height: 100%;
     overflow: hidden;
   }
   &-title-tagline {

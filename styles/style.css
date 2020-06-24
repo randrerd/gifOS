@@ -171,6 +171,7 @@ h2 {
   margin-bottom: 2rem;
   padding: 0.5rem 0;
   position: relative;
+  padding-bottom: 0;
 }
 .searchbox-wrapper {
   display: flex;
@@ -198,6 +199,7 @@ h2 {
   width: 100%;
   z-index: 2;
   top: 5rem;
+  left: 0.1px;
 }
 
 /*Objects*/

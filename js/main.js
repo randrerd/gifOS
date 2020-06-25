@@ -1,7 +1,5 @@
 "use strict";
 
-//TO-DO: Infinite scrolling on trending section; searchSection.
-
 /*Global Constants */
 const $APIKey = "AtDXUGwf0oBU7IXtdm8Ztz3zUP1ct6nO";
 
@@ -26,7 +24,6 @@ const navbarSection = (() => {
 
   /*Local variables*/
   const themeOptions = ["sailor_day", "sailor_night"];
-
 
   loadSetColorOption();
   //When clicking outside the div containing the theme options, hides it
@@ -83,7 +80,7 @@ const navbarSection = (() => {
   }
 })();
 
-const searchSection = (() => {
+const searchbarSection = (() => {
   //DOM Cache
   const $inputBar = document.querySelector(".searchbox-input");
   const $autocompleteContainer = document.querySelector(
@@ -92,11 +89,104 @@ const searchSection = (() => {
   const $autocompleteSuggestionItems = document.querySelectorAll(
     ".searchbox-suggestions-text"
   );
+  const $autocompleteSuggestionButtons = document.querySelectorAll(
+    ".searchbox-suggestions-item"
+  );
+  const $submitBtn = document.querySelector(".searchbox-input-submit");
+  const $searchResultsWrapper = document.querySelector(
+    ".searchResults-content-wrapper"
+  );
+  const $searchResultsContainer = document.querySelector(
+    ".searchResults-container"
+  );
+  const $suggestionsSection = document.querySelector(".suggestions-container");
+  const $trendingSection = document.querySelector(".trending-container");
+  const $returnArrowBtn = document.querySelector(".navbar-return-arrow");
 
   //Local Bindings
-  let isUserDoneWriting = false;
   let mainSuggestions = [];
   let totalSuggestions = [];
+  let searchCounter = 0;
+
+  //Event listeners
+  $submitBtn.onclick = function () {
+    showResults($inputBar.value);
+  };
+  $autocompleteSuggestionButtons.forEach((suggestion) => {
+    suggestion.onclick = function () {
+      let suggestionTerm = suggestion.childNodes[1].innerText;
+      $inputBar.value = suggestionTerm;
+      showResults($inputBar.value);
+    };
+  });
+
+  async function getSearchResults(term) {
+    try {
+      let response = await fetch(
+        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=0&limit=6`
+      );
+      let data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function showResults(term) {
+    $searchResultsContainer.childNodes[1].innerText = `Gifs de ${term}`;
+    try {
+      let data = getSearchResults(term);
+
+      if (!searchCounter) {
+        //On first search
+        hideElements(
+          $trendingSection,
+          $suggestionsSection,
+          $autocompleteContainer
+        );
+        showElements($searchResultsContainer, $returnArrowBtn);
+
+        data.then((results) => {
+          results.data.forEach((object) => {
+            checkGifRatio(object)
+              ? appendToContainer(
+                  createGifElement(object, "result-large"),
+                  $searchResultsWrapper
+                )
+              : appendToContainer(
+                  createGifElement(object, "result-small"),
+                  $searchResultsWrapper
+                );
+          });
+        });
+      } else {
+        //Replaces previous gif elements with the results from
+        //the last search made
+        hideElements($autocompleteContainer);
+
+        data.then((results) => {
+          for (let i = 0; i < results.data.length; i++) {
+            for (let j = 0; j < $searchResultsWrapper.childNodes.length; j++) {
+              //Skips first iteration since first child is a #text non visible element
+              const oldGif = $searchResultsWrapper.childNodes[j + 1];
+              checkGifRatio(results.data[j])
+                ? $searchResultsWrapper.replaceChild(
+                    createGifElement(results.data[j], "result-large"),
+                    oldGif
+                  )
+                : $searchResultsWrapper.replaceChild(
+                    createGifElement(results.data[j], "result-small"),
+                    oldGif
+                  );
+            }
+          }
+        });
+      }
+      searchCounter++;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const autocompletePortion = (() => {
     async function getAutocompleteTerms(term) {
@@ -125,12 +215,19 @@ const searchSection = (() => {
       if (e.keyCode === 27 || $inputBar.value === "") {
         hideElements($autocompleteContainer);
       }
+      //Performs the search action when ENTER key is used
+      else if (e.keyCode === 13) {
+        showResults($inputBar.value);
+      }
       //Removes the first four elements from the array to store the new suggestions
       let oldItems = mainSuggestions.splice(0, 4);
       //Store previous suggestions to allItems array for future use
       oldItems.forEach((item) => {
         totalSuggestions.push(item);
       });
+      //Removes disabled attribute to submit button
+      //when user starts typing so thet can use it to submit search
+      $submitBtn.removeAttribute("disabled");
     };
 
     function replacePlaceholders(...suggestedTerms) {
@@ -212,9 +309,7 @@ const trendingSection = (() => {
       );
       let data = await response.json();
       data.data.forEach((element) => {
-        //Checks if the element's ratio is greater than itself and a half, if so, it gets assigned
-        //a large container and then appends it to the trending section div element.
-        element.images.original.width / element.images.original.height >= 1.5
+        checkGifRatio(element)
           ? appendToContainer(
               createGifElement(element, "trending-large"),
               $trendingContainer
@@ -233,6 +328,16 @@ const trendingSection = (() => {
 })();
 
 /*Global functions*/
+
+function checkGifRatio(object) {
+  //Checks if the element's ratio is greater than itself and a half, if so, it
+  //returns true
+  let isLarge = false;
+  object.images.original.width / object.images.original.height >= 1.5
+    ? (isLarge = true)
+    : (isLarge = false);
+  return isLarge;
+}
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -290,6 +395,31 @@ function createGifElement(object, type) {
       />
       <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
     </div>`;
+      return $newContainer.firstChild;
+    case "result-small":
+      $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">
+        <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
+        <img
+          src="${object.images.original.url}"
+          alt="${object.title}"
+          class="gif-content-img loading-animation"
+        />
+        <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
+        </a>
+      </div>`;
+      return $newContainer.firstChild;
+
+    case "result-large":
+      $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
+        <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
+        <img
+          src="${object.images.original.url}"
+          alt="${object.title}"
+          class="gif-content-img loading-animation"
+        />
+        <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
+        </a>
+      </div>`;
       return $newContainer.firstChild;
   }
 }

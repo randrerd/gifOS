@@ -299,6 +299,11 @@ h2 {
     margin: 0;
   }
 }
+.gif-result-link {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
 
 .video-progress-bar {
   display: inline-block;

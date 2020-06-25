@@ -256,6 +256,11 @@ input {
     margin-bottom: 3rem;
     padding: 0.1rem;
   }
+  &-result-link{
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
 }
 
 .video {

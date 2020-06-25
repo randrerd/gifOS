@@ -209,6 +209,15 @@ h2 {
   top: 5rem;
   left: 0.1px;
 }
+.searchbox-autocomplete-history-container {
+  position: relative;
+  bottom: 1.5rem;
+}
+.searchbox-autocomplete-history-item.gif-content-details-btn {
+  bottom: initial;
+  margin-left: initial;
+  padding: 0.25rem 0.5rem;
+}
 
 /*Objects*/
 .old-school-window {

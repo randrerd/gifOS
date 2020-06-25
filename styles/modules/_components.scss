@@ -166,6 +166,18 @@ input {
       left: 0.1px;
     }
   }
+  &-autocomplete-history{
+    &-container{
+      position: relative;
+      bottom: 1.5rem;
+    }
+    &-item.gif-content-details-btn{
+      bottom: initial;
+      margin-left: initial;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
 }
 
 /*Objects*/

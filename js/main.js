@@ -102,6 +102,9 @@ const searchbarSection = (() => {
   const $suggestionsSection = document.querySelector(".suggestions-container");
   const $trendingSection = document.querySelector(".trending-container");
   const $returnArrowBtn = document.querySelector(".navbar-return-arrow");
+  const $autocompleteHistoryContainer = document.querySelector(
+    ".searchbox-autocomplete-history-container"
+  );
 
   //Local Bindings
   let mainSuggestions = [];
@@ -109,6 +112,7 @@ const searchbarSection = (() => {
   let searchCounter = 0;
 
   //Event listeners
+
   $submitBtn.onclick = function () {
     showResults($inputBar.value);
   };
@@ -123,7 +127,7 @@ const searchbarSection = (() => {
   async function getSearchResults(term) {
     try {
       let response = await fetch(
-        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=0&limit=6`
+        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=0&limit=12`
       );
       let data = await response.json();
       return data;
@@ -133,9 +137,28 @@ const searchbarSection = (() => {
   }
 
   function showResults(term) {
-    $searchResultsContainer.childNodes[1].innerText = `Gifs de ${term}`;
     try {
       let data = getSearchResults(term);
+
+      //Updates container header with the search term
+      $searchResultsContainer.childNodes[1].innerText = `Gifs de ${term}`;
+
+      //Shows the autocomplete suggestions from search history as tag buttons
+      //right below the search container
+      renderTags();
+
+      //Event listener that triggers new search when user clicks
+      //on one of the tags
+      $autocompleteHistoryContainer.childNodes.forEach((tag) => {
+        tag.onclick = function () {
+          let tagText = tag.innerText;
+          //Removes the '#' symbol from the tag for it 
+          //to be searchable
+          let searchableTerm = tagText.slice(1, tagText.length);
+          $inputBar.value = searchableTerm;
+          showResults(searchableTerm);
+        };
+      });
 
       if (!searchCounter) {
         //On first search
@@ -144,7 +167,12 @@ const searchbarSection = (() => {
           $suggestionsSection,
           $autocompleteContainer
         );
-        showElements($searchResultsContainer, $returnArrowBtn);
+        showElements(
+          $searchResultsContainer,
+          $returnArrowBtn,
+          $autocompleteHistoryContainer,
+          $autocompleteHistoryContainer
+        );
 
         data.then((results) => {
           results.data.forEach((object) => {
@@ -160,33 +188,70 @@ const searchbarSection = (() => {
           });
         });
       } else {
+        
+        hideElements($autocompleteContainer);
         //Replaces previous gif elements with the results from
         //the last search made
-        hideElements($autocompleteContainer);
-
         data.then((results) => {
-          for (let i = 0; i < results.data.length; i++) {
-            for (let j = 0; j < $searchResultsWrapper.childNodes.length; j++) {
-              //Skips first iteration since first child is a #text non visible element
-              const oldGif = $searchResultsWrapper.childNodes[j + 1];
-              checkGifRatio(results.data[j])
-                ? $searchResultsWrapper.replaceChild(
-                    createGifElement(results.data[j], "result-large"),
-                    oldGif
-                  )
-                : $searchResultsWrapper.replaceChild(
-                    createGifElement(results.data[j], "result-small"),
-                    oldGif
-                  );
-            }
+          for (let j = 0; j < results.data.length; j++) {
+            //Skips first iteration since first child is a #text non visible element
+            const oldGif = $searchResultsWrapper.childNodes[j + 1];
+
+            checkGifRatio(results.data[j])
+              ? $searchResultsWrapper.replaceChild(
+                  createGifElement(results.data[j], "result-large"),
+                  oldGif
+                )
+              : $searchResultsWrapper.replaceChild(
+                  createGifElement(results.data[j], "result-small"),
+                  oldGif
+                );
           }
         });
       }
+  
       searchCounter++;
     } catch (error) {
       console.log(error);
     }
   }
+
+  function renderTags() {
+    let tags = addHashtagToSentences(mainSuggestions);
+
+    if ($autocompleteHistoryContainer.childElementCount < 6) {
+      for (let i = 0; i <= 6; i++) {
+        const element = tags[i];
+        appendToContainer(
+          createGifElement(element, "autocompleteHistory"),
+          $autocompleteHistoryContainer
+        );
+      }
+    } else {
+      for (let i = 0; i <= 6; i++) {
+        //Checks if there is a new autocomplete suggestion to replace old suggestion
+        //with
+        if (tags[i]) {
+          const element = createGifElement(tags[i], "autocompleteHistory");
+          let old = $autocompleteHistoryContainer.childNodes[i + 1];
+          $autocompleteHistoryContainer.replaceChild(element, old);
+        } 
+      }
+    }
+  }
+
+  function addHashtagToSentences(array) {
+    let result = [];
+
+    array.forEach((item) => {
+      let hashtaggedItem = "";
+      hashtaggedItem += `#${item}`;
+      result.push(hashtaggedItem);
+    });
+    return result;
+  }
+
+
 
   const autocompletePortion = (() => {
     async function getAutocompleteTerms(term) {
@@ -357,6 +422,10 @@ function createGifElement(object, type) {
   const $newContainer = document.createElement("div");
 
   switch (type) {
+    case "autocompleteHistory":
+      $newContainer.innerHTML = `<a class="searchbox-autocomplete-history-item gif-content-details-btn">${object}</a>`;
+      return $newContainer.firstChild;
+
     case "suggestions":
       $newContainer.innerHTML = `<div class="gif-container">
       <div class="gif-header-container">
@@ -373,7 +442,6 @@ function createGifElement(object, type) {
       </div>
     </div>`;
       return $newContainer.firstChild;
-      break;
 
     case "trending-small":
       $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">

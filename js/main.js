@@ -218,6 +218,8 @@ const searchbarSection = (() => {
 
   function renderTags() {
     let tags = addHashtagToSentences(mainSuggestions);
+    
+    if(mainSuggestions.length){
 
     if ($autocompleteHistoryContainer.childElementCount < 6) {
       for (let i = 0; i <= 6; i++) {
@@ -238,7 +240,8 @@ const searchbarSection = (() => {
         } 
       }
     }
-  }
+  } 
+}
 
   function addHashtagToSentences(array) {
     let result = [];

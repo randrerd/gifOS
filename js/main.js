@@ -102,13 +102,12 @@ const searchbarSection = (() => {
   const $suggestionsSection = document.querySelector(".suggestions-container");
   const $trendingSection = document.querySelector(".trending-container");
   const $returnArrowBtn = document.querySelector(".navbar-return-arrow");
-  const $autocompleteHistoryContainer = document.querySelector(
-    ".searchbox-autocomplete-history-container"
+  const $searchHistoryContainer = document.querySelector(
+    ".searchbox-search-history-container"
   );
 
   //Local Bindings
   let mainSuggestions = [];
-  let totalSuggestions = [];
   let searchCounter = 0;
 
   //Event listeners
@@ -143,16 +142,19 @@ const searchbarSection = (() => {
       //Updates container header with the search term
       $searchResultsContainer.childNodes[1].innerText = `Gifs de ${term}`;
 
-      //Shows the autocomplete suggestions from search history as tag buttons
+      //Stores current search to search history
+      storeSearchHistory(term);
+
+      //Shows the  search history as tag buttons
       //right below the search container
       renderTags();
 
       //Event listener that triggers new search when user clicks
       //on one of the tags
-      $autocompleteHistoryContainer.childNodes.forEach((tag) => {
+      $searchHistoryContainer.childNodes.forEach((tag) => {
         tag.onclick = function () {
           let tagText = tag.innerText;
-          //Removes the '#' symbol from the tag for it 
+          //Removes the '#' symbol from the tag for it
           //to be searchable
           let searchableTerm = tagText.slice(1, tagText.length);
           $inputBar.value = searchableTerm;
@@ -170,8 +172,8 @@ const searchbarSection = (() => {
         showElements(
           $searchResultsContainer,
           $returnArrowBtn,
-          $autocompleteHistoryContainer,
-          $autocompleteHistoryContainer
+          $searchHistoryContainer,
+          $searchHistoryContainer
         );
 
         data.then((results) => {
@@ -188,7 +190,6 @@ const searchbarSection = (() => {
           });
         });
       } else {
-        
         hideElements($autocompleteContainer);
         //Replaces previous gif elements with the results from
         //the last search made
@@ -209,39 +210,51 @@ const searchbarSection = (() => {
           }
         });
       }
-  
+
       searchCounter++;
     } catch (error) {
       console.log(error);
     }
   }
 
-  function renderTags() {
-    let tags = addHashtagToSentences(mainSuggestions);
-    
-    if(mainSuggestions.length){
-
-    if ($autocompleteHistoryContainer.childElementCount < 6) {
-      for (let i = 0; i <= 6; i++) {
-        const element = tags[i];
-        appendToContainer(
-          createGifElement(element, "autocompleteHistory"),
-          $autocompleteHistoryContainer
-        );
-      }
+  function storeSearchHistory(term) {
+    //Checks if there's already search history data stored
+    //if not, then sets it
+    if (!localStorage.getItem("searchHistory")) {
+      localStorage.setItem("searchHistory", term);
     } else {
-      for (let i = 0; i <= 6; i++) {
-        //Checks if there is a new autocomplete suggestion to replace old suggestion
-        //with
-        if (tags[i]) {
-          const element = createGifElement(tags[i], "autocompleteHistory");
-          let old = $autocompleteHistoryContainer.childNodes[i + 1];
-          $autocompleteHistoryContainer.replaceChild(element, old);
-        } 
-      }
+      let previousHistory = localStorage.getItem("searchHistory");
+      let newHistory = (previousHistory += `, ${term}`);
+      localStorage.setItem("searchHistory", newHistory);
     }
-  } 
-}
+  }
+
+  function renderTags() {
+    //Gets value from localStorage searchHistory key and
+    //sets an array with each of the terms stored in the key
+    //value
+    let keyValue = localStorage.getItem("searchHistory");
+    let searchHistoryArray = keyValue.split(", ");
+
+    let tags = addHashtagToSentences(searchHistoryArray);
+
+    //Checks if there's any tag already rendered
+    if (!$searchHistoryContainer.childElementCount) {
+      //Renders tags from existing search history
+      tags.forEach((tag) => {
+        appendToContainer(
+          createGifElement(tag, 'searchHistoryTag'),
+          $searchHistoryContainer
+        );
+      });
+    } else {
+      //Renders tag for the last search made
+      appendToContainer(
+        createGifElement(tags[tags.length - 1], 'searchHistoryTag'),
+        $searchHistoryContainer
+      );
+    }
+  }
 
   function addHashtagToSentences(array) {
     let result = [];
@@ -253,8 +266,6 @@ const searchbarSection = (() => {
     });
     return result;
   }
-
-
 
   const autocompletePortion = (() => {
     async function getAutocompleteTerms(term) {
@@ -289,10 +300,7 @@ const searchbarSection = (() => {
       }
       //Removes the first four elements from the array to store the new suggestions
       let oldItems = mainSuggestions.splice(0, 4);
-      //Store previous suggestions to allItems array for future use
-      oldItems.forEach((item) => {
-        totalSuggestions.push(item);
-      });
+
       //Removes disabled attribute to submit button
       //when user starts typing so thet can use it to submit search
       $submitBtn.removeAttribute("disabled");
@@ -425,7 +433,7 @@ function createGifElement(object, type) {
   const $newContainer = document.createElement("div");
 
   switch (type) {
-    case "autocompleteHistory":
+    case 'searchHistoryTag':
       $newContainer.innerHTML = `<a class="searchbox-autocomplete-history-item gif-content-details-btn">${object}</a>`;
       return $newContainer.firstChild;
 

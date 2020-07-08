@@ -125,6 +125,7 @@ h2 {
 }
 .btn-text.searchbox-suggestions-text {
   padding: 0.25rem 1.75rem;
+  width: 100%;
 }
 .btn-finish {
   align-self: flex-end;

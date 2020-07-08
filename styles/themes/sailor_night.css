@@ -115,6 +115,9 @@ span.navbar-dropdown-option-text {
 .btn.btn-light {
   background-color: #110038;
 }
+.btn.btn-light:hover {
+  background-color: #110038;
+}
 .btn.navbar-dropdown-theme-option {
   background-color: #cccccc;
   box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #fff;
@@ -131,6 +134,20 @@ span.navbar-dropdown-option-text {
   background-color: #cccccc;
   box-shadow: inset -1px -1px 0 0 #b4b4b4, inset 1px 1px 0 0 #fff;
   border: 1px solid gray;
+}
+
+.navbar-myGIFS-btn:hover {
+  border: 1px dotted #fff;
+}
+.navbar-myGIFS-btn:active {
+  color: #837b97;
+}
+.navbar-myGIFS-btn:active .underline {
+  color: #837b97;
+  border-bottom: 1px solid #837b97;
+}
+.navbar-myGIFS-btn .underline {
+  border-bottom: 1px solid #fff;
 }
 
 .searchbox-input {

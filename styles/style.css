@@ -109,6 +109,13 @@ h2 {
 .btn-text {
   padding: 0.25rem 1.15rem;
   display: inline-block;
+  border: 1px solid transparent;
+}
+.btn-text:active {
+  border: 1px dotted black;
+}
+.btn-text:hover {
+  border: 1px dotted black;
 }
 .btn-text .cp {
   padding: 0.25rem 1.45rem;
@@ -457,6 +464,7 @@ header .header-content {
   margin-top: 0.3rem;
 }
 .navbar-myGIFS-btn {
+  border: 1px dotted transparent;
   padding: 0.65rem;
 }
 .navbar-dropdown-container {
@@ -476,6 +484,7 @@ header .header-content {
 }
 .navbar-dropdown-option-text {
   padding: 0.35rem 1rem;
+  width: 100%;
 }
 
 main {
@@ -545,6 +554,7 @@ main {
 }
 .create-gif-button-text {
   padding: 0.4rem 0.33rem;
+  width: 100%;
 }
 
 .capture-video-container {

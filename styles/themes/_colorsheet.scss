@@ -6,7 +6,7 @@ body {
 header {
   box-shadow: 0 1px 0 0 $textDark;
 }
-.create-gif-container-content{
+.create-gif-container-content {
   color: $createPhaseTextColor;
 }
 
@@ -23,7 +23,7 @@ h3,
 .gif-content-details-btn {
   color: $secondaryTextColor;
 }
-a{
+a {
   color: $textColor;
 }
 p {
@@ -51,15 +51,18 @@ span {
   &:hover {
     background-color: $primaryColorHover;
   }
-  &-text{
-    &.navbar-theme-btn-text{
+  &-text {
+    &.navbar-theme-btn-text {
       border-right: 1px solid $textDark;
     }
-    &.searchbox-suggestions-text{
+    &.searchbox-suggestions-text {
       color: initial;
     }
   }
   &.btn-light {
+    &:hover {
+      background-color: $secondaryBtnColorHover;
+    }
     background-color: $secondaryBtnColor;
   }
   &.navbar-dropdown-theme-option {
@@ -67,18 +70,32 @@ span {
     box-shadow: $itemShadow;
     border: 1px solid gray;
   }
-  &-done{
+  &-done {
     background-color: $doneBtnColor;
     box-shadow: $doneBtnColorShadow;
-    &-text{
+    &-text {
       color: $secondaryTextColor;
-
     }
   }
-  &.searchbox-suggestions-item{
+  &.searchbox-suggestions-item {
     background-color: $thirdBtnColor;
     box-shadow: $itemShadow;
     border: 1px solid gray;
+  }
+}
+.navbar-myGIFS-btn {
+  &:hover {
+    border: 1px dotted $textColor;
+  }
+  &:active {
+    color: $thirdBtnActive;
+    .underline {
+      color: $thirdBtnActive;
+      border-bottom: 1px solid $thirdBtnActive;
+    }
+  }
+  .underline {
+    border-bottom: 1px solid $textColor;
   }
 }
 
@@ -95,16 +112,16 @@ span {
   }
 }
 
-.video-playbar{
-  &-progress-wrapper{
+.video-playbar {
+  &-progress-wrapper {
     background: $windowBackgroundColor;
     box-shadow: $inputBarShadow;
   }
-  &-progress-bar{
-    &.empty-block{
+  &-progress-bar {
+    &.empty-block {
       background: $progressBlockUnfilled;
     }
-    &.filled-block{
+    &.filled-block {
       background: $primaryColor;
     }
   }
@@ -125,20 +142,19 @@ span {
     box-shadow: $windowBackgroundShadow;
     background: $windowBackgroundColor;
     padding: 1px;
-
   }
-  &-content{
-    &-details-btn{
+  &-content {
+    &-details-btn {
       background: $secondaryColor;
       box-shadow: $secondaryShadow;
       border: 1px solid $secondaryColorBorder;
-      &:hover{
+      &:hover {
         background: $secondaryColorHover;
       }
     }
   }
 }
-.uploading-video-content-wrapper{
+.uploading-video-content-wrapper {
   box-shadow: $inputBarShadow;
   background: $secondaryTextColor;
 }

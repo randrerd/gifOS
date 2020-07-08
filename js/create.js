@@ -14,7 +14,6 @@ const navbarSection = (() => {
 
   /*Event Listeners*/
   document.addEventListener("DOMContentLoaded", (event) => {
-    loadSetColorOption();
     showElements(0, $returnArrowBtn);
   });
 
@@ -22,15 +21,6 @@ const navbarSection = (() => {
     window.location = "index.html";
   };
 
-  function loadSetColorOption() {
-    localStorage.getItem("themeOption")
-      ? setColorOption(localStorage.getItem("themeOption"))
-      : setColorOption(themeOptions[0]);
-  }
-  function setColorOption(theme) {
-    $themeStylesheetLink.setAttribute("href", `styles/themes/${theme}.css`);
-    localStorage.setItem("themeOption", `${theme}`);
-  }
 })();
 
 const creatingPhase1 = (() => {

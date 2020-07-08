@@ -58,7 +58,7 @@ h2 {
   }
   &-text {
     @extend %fontStack;
-    padding: 0.45rem 1.75rem;
+    padding: 0.25rem 1.15rem;
     display: inline-block;
     // font-size: 0.8rem;
     .cp {
@@ -73,27 +73,35 @@ h2 {
   }
   &-finish {
     align-self: flex-end;
-    margin-top: 2rem;
+    margin-top: auto;
   }
   &-done {
+    @include responsive(desktops) {
+      margin-left: auto;
+    }
+    align-items: center;
     align-self: center;
   }
-  &.searchbox{
-    &-input-submit{
+  &.searchbox {
+    &-input-submit {
       margin-right: 0.2rem;
     }
-  &-suggestions-item {
-    text-align: left;
-    width: 83%;
-    display: inline-block;
-    padding: 2px;
-    margin-left: 1.9rem;
-    margin-top: 0.5rem;
+    &-suggestions-item {
+      text-align: left;
+      width: 83%;
+      display: inline-block;
+      padding: 2px;
+      margin-left: 1.9rem;
+      margin-top: 0.5rem;
+    }
   }
 }
-}
 .repeat-capture-btn {
+  @include responsive(desktops){
+    margin-bottom: 0;
+  }
   margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
 }
 .gif-times-btn {
   background-image: url(../assets/close.svg);
@@ -105,9 +113,13 @@ h2 {
   margin-left: auto;
 }
 .videodetails-timer {
+  @extend %fontStack;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
   height: 1.2rem;
-  width: 35%;
-  margin-bottom: 0.5rem;
+  width: 6.5rem;
+  box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;;
 }
 .play-btn {
   margin-right: 0.25rem;
@@ -131,7 +143,6 @@ input {
     margin-bottom: 2rem;
     padding: 0.1rem 0.1rem 0.5rem 0.1rem;
     position: relative;
-    
   }
   &-wrapper {
     @include responsive(desktops) {
@@ -144,7 +155,7 @@ input {
     padding: 0 1rem;
   }
   &-input {
-    @include responsive(desktops){
+    @include responsive(desktops) {
       margin: 0.6rem;
     }
     padding: 0.5rem;
@@ -166,22 +177,21 @@ input {
       left: 0.1px;
     }
   }
-  &-autocomplete-history{
-    &-container{
+  &-autocomplete-history {
+    &-container {
       position: relative;
       bottom: 1.5rem;
       width: 87%;
       display: flex;
       flex-wrap: wrap;
     }
-    &-item.gif-content-details-btn{
+    &-item.gif-content-details-btn {
       bottom: initial;
       margin-left: initial;
       padding: 0.25rem 0.5rem;
       margin: 0 0.2rem 0.35rem 0;
     }
   }
-
 }
 
 /*Objects*/
@@ -191,14 +201,6 @@ input {
   padding: 0.1rem 0.1rem;
   padding-bottom: 0.55rem;
   margin-bottom: 1.5rem;
-}
-.creating-phase-content-wrapper {
-  padding: 1rem 0.5rem;
-}
-.creating-phase-window {
-  align-self: center;
-  width: 55%;
-  min-height: 15rem;
 }
 
 .gif {
@@ -252,6 +254,16 @@ input {
       object-fit: cover;
       width: 100%;
       height: 100%;
+      &.uploadedGif{
+        @include responsive(desktops){
+          width: 48%;
+          margin: 0 0.5rem;
+          margin-bottom: 2.5rem;
+        }
+        width: 80%;
+        align-self: center;
+        margin-bottom: 1rem;
+      }
     }
     &-details-btn {
       position: relative;
@@ -272,29 +284,56 @@ input {
     margin-bottom: 3rem;
     padding: 0.1rem;
   }
-  &-result-link{
+  &-result-link {
     height: 100%;
     width: 100%;
     cursor: pointer;
   }
 }
 
+
 .video {
+  &-content {
+    @include responsive(desktops) {
+      width: 100%;
+    }
+    width: 17rem;
+    align-self: center;
+    margin-bottom: 1.5rem;
+  }
+  &-buttons-wrapper {
+    @include responsive(desktops) {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      margin-left: auto;
+    }
+  }
   &-progress-bar {
     display: inline-block;
     height: 100%;
     width: 0.55rem;
     margin-right: 1.75px;
   }
-  &-playbar-progress-wrapper {
+  &-playbar {
+    &-progress-wrapper{
     width: 11rem;
     height: 1.25rem;
     margin-left: 0.35rem;
-  }
-  .videodetails-wrapper {
+    padding: 0.1rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
+  }
+  &-progress-bar{
+    width: 1.2rem;
+    margin-right: 0.1rem;
+  }
+}
+  .videodetails {
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: center;
+    }
   }
 }

@@ -95,6 +95,20 @@ span {
   }
 }
 
+.video-playbar{
+  &-progress-wrapper{
+    background: $windowBackgroundColor;
+    box-shadow: $inputBarShadow;
+  }
+  &-progress-bar{
+    &.empty-block{
+      background: $progressBlockUnfilled;
+    }
+    &.filled-block{
+      background: $primaryColor;
+    }
+  }
+}
 /*Objects*/
 .old-school-window {
   background-color: $windowBackgroundColor;
@@ -123,4 +137,8 @@ span {
       }
     }
   }
+}
+.uploading-video-content-wrapper{
+  box-shadow: $inputBarShadow;
+  background: $secondaryTextColor;
 }

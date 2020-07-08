@@ -30,7 +30,7 @@ a {
 }
 
 /* FONTSTACKS */
-header .header-content, .searchbox-input-submit-text, input, .btn-text, h1, a, .numbered-list li, p {
+header .header-content, .searchbox-input-submit-text, input, .videodetails-timer, .btn-text, h1, a, .numbered-list li, p {
   font-family: "Chakra Petch", Arial, sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
@@ -104,7 +104,7 @@ h2 {
   min-width: 80%;
 }
 .btn-text {
-  padding: 0.45rem 1.75rem;
+  padding: 0.25rem 1.15rem;
   display: inline-block;
 }
 .btn-text .cp {
@@ -118,10 +118,16 @@ h2 {
 }
 .btn-finish {
   align-self: flex-end;
-  margin-top: 2rem;
+  margin-top: auto;
 }
 .btn-done {
+  align-items: center;
   align-self: center;
+}
+@media only screen and (min-width: 992px) {
+  .btn-done {
+    margin-left: auto;
+  }
 }
 .btn.searchbox-input-submit {
   margin-right: 0.2rem;
@@ -137,6 +143,12 @@ h2 {
 
 .repeat-capture-btn {
   margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+@media only screen and (min-width: 992px) {
+  .repeat-capture-btn {
+    margin-bottom: 0;
+  }
 }
 
 .gif-times-btn {
@@ -150,9 +162,12 @@ h2 {
 }
 
 .videodetails-timer {
+  justify-content: center;
+  align-items: center;
+  background-color: white;
   height: 1.2rem;
-  width: 35%;
-  margin-bottom: 0.5rem;
+  width: 6.5rem;
+  box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
 }
 
 .play-btn {
@@ -231,16 +246,6 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
-.creating-phase-content-wrapper {
-  padding: 1rem 0.5rem;
-}
-
-.creating-phase-window {
-  align-self: center;
-  width: 55%;
-  min-height: 15rem;
-}
-
 @media only screen and (min-width: 992px) {
   .gif-large {
     grid-column: span 2;
@@ -292,6 +297,18 @@ h2 {
   width: 100%;
   height: 100%;
 }
+.gif-content-img.uploadedGif {
+  width: 80%;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+@media only screen and (min-width: 992px) {
+  .gif-content-img.uploadedGif {
+    width: 48%;
+    margin: 0 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
 .gif-content-details-btn {
   position: relative;
   bottom: 2.75rem;
@@ -318,6 +335,24 @@ h2 {
   cursor: pointer;
 }
 
+.video-content {
+  width: 17rem;
+  align-self: center;
+  margin-bottom: 1.5rem;
+}
+@media only screen and (min-width: 992px) {
+  .video-content {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .video-buttons-wrapper {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    margin-left: auto;
+  }
+}
 .video-progress-bar {
   display: inline-block;
   height: 100%;
@@ -328,6 +363,12 @@ h2 {
   width: 11rem;
   height: 1.25rem;
   margin-left: 0.35rem;
+  padding: 0.1rem;
+  display: flex;
+}
+.video-playbar-progress-bar {
+  width: 1.2rem;
+  margin-right: 0.1rem;
 }
 .video .videodetails-wrapper {
   display: flex;
@@ -393,15 +434,12 @@ header .header-content {
 @media only screen and (min-width: 992px) {
   .navbar-buttons-wrapper {
     flex-direction: row;
-    width: 43%;
+    width: 37%;
     justify-content: space-evenly;
   }
 }
 .navbar-btn {
   margin-top: 0.3rem;
-}
-.navbar-theme-btn {
-  min-width: 10rem;
 }
 .navbar-myGIFS-btn {
   padding: 0.65rem;
@@ -417,7 +455,7 @@ header .header-content {
 .navbar-dropdown-theme-options-container.is-active {
   display: flex;
   position: absolute;
-  top: 2.4rem;
+  top: 1.9rem;
   width: 100%;
   margin-bottom: 0;
 }
@@ -436,12 +474,43 @@ main {
   }
 }
 
+.creating-phase-content-wrapper {
+  padding: 1rem 0.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.creating-phase-window {
+  align-self: center;
+  min-height: 16rem;
+  justify-content: space-between;
+}
+@media only screen and (min-width: 992px) {
+  .creating-phase-window {
+    width: 60%;
+  }
+}
+.creating-phase-videodetails-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  flex-direction: column;
+}
+@media only screen and (min-width: 992px) {
+  .creating-phase-videodetails-wrapper {
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
 .create-gif-container-subheader-wrapper {
   display: flex;
 }
 .create-gif-container-wrapper {
   display: flex;
   justify-content: center;
+  flex-direction: row;
   align-items: flex-start;
   padding: 1rem 0 0.5rem 0;
 }
@@ -467,7 +536,14 @@ main {
   flex-direction: column;
 }
 .capture-video-container .cp-btn {
-  align-self: end;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+@media only screen and (min-width: 992px) {
+  .capture-video-container .cp-btn {
+    margin-top: 1rem;
+  }
 }
 
 .capturing-video-container {
@@ -476,12 +552,11 @@ main {
 .capturing-video-container.videodetails-timer {
   width: 80%;
   height: 1rem;
-  margin-bottom: 0.5rem;
 }
 
 .preview-video-playbar-wrapper {
-  display: flex;
   align-items: center;
+  margin: 0 1rem;
 }
 .preview-video-buttons-wrapper {
   margin-top: 0.75rem;
@@ -494,10 +569,10 @@ main {
   flex-direction: column;
 }
 .uploading-video-content-wrapper {
-  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  margin-bottom: 1.5rem;
 }
 .uploading-video-text {
   font-weight: bold;
@@ -513,26 +588,36 @@ main {
 .uploading-progress-bar {
   margin-top: 1.5rem;
 }
-
-.repeat-capture-btn {
-  margin-bottom: 0.55rem;
+.uploading-gif-cancel-btn {
+  margin-top: auto;
 }
 
 .success-buttons-wrapper {
   display: flex;
   flex-direction: column;
+  margin: 0 1rem;
 }
 .success-upload-content {
   display: flex;
   flex-direction: column;
 }
+@media only screen and (min-width: 992px) {
+  .success-upload-content {
+    width: 100%;
+  }
+}
 .success-upload-content p {
   font-weight: bold;
-  margin-bottom: 0.8rem;
+  margin: 0 1rem;
+  margin-bottom: 0.5rem;
 }
 .success-upload-content-wrapper {
-  display: flex;
   flex-direction: column;
+}
+@media only screen and (min-width: 992px) {
+  .success-upload-content-wrapper {
+    flex-direction: row;
+  }
 }
 
 .create-main-container {

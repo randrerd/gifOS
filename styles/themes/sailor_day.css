@@ -144,6 +144,17 @@ span.navbar-dropdown-option-text {
   color: #b4b4b4;
 }
 
+.video-playbar-progress-wrapper {
+  background: #e6e6e6;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
+}
+.video-playbar-progress-bar.empty-block {
+  background: #999999;
+}
+.video-playbar-progress-bar.filled-block {
+  background: #f7c9f3;
+}
+
 /*Objects*/
 .old-school-window {
   background-color: #e6e6e6;
@@ -169,6 +180,11 @@ span.navbar-dropdown-option-text {
 }
 .gif-content-details-btn:hover {
   background: #3a72db;
+}
+
+.uploading-video-content-wrapper {
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
+  background: #fff;
 }
 
 /*# sourceMappingURL=sailor_day.css.map */

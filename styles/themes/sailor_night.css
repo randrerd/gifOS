@@ -144,6 +144,17 @@ span.navbar-dropdown-option-text {
   color: #8f8f8f;
 }
 
+.video-playbar-progress-wrapper {
+  background: #b4b4b4;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
+}
+.video-playbar-progress-bar.empty-block {
+  background: #979797;
+}
+.video-playbar-progress-bar.filled-block {
+  background: #ee3efe;
+}
+
 /*Objects*/
 .old-school-window {
   background-color: #b4b4b4;
@@ -169,6 +180,11 @@ span.navbar-dropdown-option-text {
 }
 .gif-content-details-btn:hover {
   background: #110038;
+}
+
+.uploading-video-content-wrapper {
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
+  background: #fff;
 }
 
 /*# sourceMappingURL=sailor_night.css.map */

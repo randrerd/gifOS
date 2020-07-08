@@ -46,7 +46,7 @@ header {
   &-buttons-wrapper {
     @include responsive(desktops) {
       flex-direction: row;
-      width: 37%;
+      min-width: 37%;
       justify-content: space-evenly;
     }
     display: flex;

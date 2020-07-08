@@ -456,7 +456,7 @@ header .header-content {
 @media only screen and (min-width: 992px) {
   .navbar-buttons-wrapper {
     flex-direction: row;
-    width: 37%;
+    min-width: 37%;
     justify-content: space-evenly;
   }
 }

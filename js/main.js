@@ -243,14 +243,14 @@ const searchbarSection = (() => {
       //Renders tags from existing search history
       tags.forEach((tag) => {
         appendToContainer(
-          createGifElement(tag, 'searchHistoryTag'),
+          createGifElement(tag, "searchHistoryTag"),
           $searchHistoryContainer
         );
       });
     } else {
       //Renders tag for the last search made
       appendToContainer(
-        createGifElement(tags[tags.length - 1], 'searchHistoryTag'),
+        createGifElement(tags[tags.length - 1], "searchHistoryTag"),
         $searchHistoryContainer
       );
     }
@@ -403,6 +403,47 @@ const trendingSection = (() => {
   getTrending();
 })();
 
+const myGifsSection = (() => {
+  const $myGifsContainer = document.querySelector(".myGifs-content-wrapper");
+
+  if (!localStorage.getItem("uploadedGifs")) {
+    null;
+  } else {
+    let uploadHistoryValue = localStorage.getItem("uploadedGifs");
+    let uploadHistoryIDs = uploadHistoryValue.split(", ");
+    uploadHistoryIDs.forEach((element) => {
+      // appendToContainer(createGifElement(getUploadedGif(element), 'myGif'),$myGifsContainer);
+      getUploadedGif(element).then((data) => {
+        try {
+          checkGifRatio(data)
+            ? appendToContainer(
+                createGifElement(data, "myGif-large"),
+                $myGifsContainer
+              )
+            : appendToContainer(
+                createGifElement(data, "myGif-small"),
+                $myGifsContainer
+              );
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    });
+  }
+  async function getUploadedGif(id) {
+    try {
+      let response = await fetch(
+        `https://api.giphy.com/v1/gifs/${id}?api_key=${$APIKey}`
+      );
+      let data = await response.json();
+
+      return data.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+})();
+
 /*Global functions*/
 
 function checkGifRatio(object) {
@@ -414,7 +455,6 @@ function checkGifRatio(object) {
     : (isLarge = false);
   return isLarge;
 }
-
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -433,7 +473,7 @@ function createGifElement(object, type) {
   const $newContainer = document.createElement("div");
 
   switch (type) {
-    case 'searchHistoryTag':
+    case "searchHistoryTag":
       $newContainer.innerHTML = `<a class="searchbox-autocomplete-history-item gif-content-details-btn">${object}</a>`;
       return $newContainer.firstChild;
 
@@ -497,6 +537,29 @@ function createGifElement(object, type) {
           class="gif-content-img loading-animation"
         />
         <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
+        </a>
+      </div>`;
+      return $newContainer.firstChild;
+
+    case "myGif-large":
+      $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
+        <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
+        <img
+          src="${object.images.original.url}"
+          alt="${object.title}"
+          class="gif-content-img loading-animation"
+        />
+        </a>
+      </div>`;
+      return $newContainer.firstChild;
+    case "myGif-small":
+      $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">
+        <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
+        <img
+          src="${object.images.original.url}"
+          alt="${object.title}"
+          class="gif-content-img loading-animation"
+        />
         </a>
       </div>`;
       return $newContainer.firstChild;

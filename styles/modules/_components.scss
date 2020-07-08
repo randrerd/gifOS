@@ -56,6 +56,9 @@ h2 {
     align-self: center;
     min-width: 80%;
   }
+  &.navbar-theme-btn{
+    min-width: 8.2rem;
+  }
   &-text {
     @extend %fontStack;
     padding: 0.25rem 1.15rem;
@@ -97,11 +100,12 @@ h2 {
   }
 }
 .repeat-capture-btn {
-  @include responsive(desktops){
+  @include responsive(desktops) {
     margin-bottom: 0;
+    margin-right: 0.5rem;
   }
   margin-bottom: 0.5rem;
-  margin-right: 0.5rem;
+  
 }
 .gif-times-btn {
   background-image: url(../assets/close.svg);
@@ -113,13 +117,17 @@ h2 {
   margin-left: auto;
 }
 .videodetails-timer {
+  @include responsive(desktops) {
+    margin-bottom: initial;
+  }
+  margin-bottom: 0.5rem;
   @extend %fontStack;
   justify-content: center;
   align-items: center;
   background-color: white;
   height: 1.2rem;
   width: 6.5rem;
-  box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
 }
 .play-btn {
   margin-right: 0.25rem;
@@ -254,9 +262,9 @@ input {
       object-fit: cover;
       width: 100%;
       height: 100%;
-      &.uploadedGif{
-        @include responsive(desktops){
-          width: 48%;
+      &.uploadedGif {
+        @include responsive(desktops) {
+          min-width: 14rem;
           margin: 0 0.5rem;
           margin-bottom: 2.5rem;
         }
@@ -291,23 +299,27 @@ input {
   }
 }
 
-
 .video {
   &-content {
-    @include responsive(desktops) {
-      width: 100%;
+    @include responsive(desktops){
+     min-width: 25rem;
     }
     width: 17rem;
     align-self: center;
     margin-bottom: 1.5rem;
+    
   }
   &-buttons-wrapper {
     @include responsive(desktops) {
-      display: flex;
-      flex-shrink: 0;
-      align-items: center;
+      flex-direction: row;
       margin-left: auto;
+      margin-top: 0;
     }
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0.5rem;
   }
   &-progress-bar {
     display: inline-block;
@@ -316,18 +328,18 @@ input {
     margin-right: 1.75px;
   }
   &-playbar {
-    &-progress-wrapper{
-    width: 11rem;
-    height: 1.25rem;
-    margin-left: 0.35rem;
-    padding: 0.1rem;
-    display: flex;
+    &-progress-wrapper {
+      width: 11rem;
+      height: 1.25rem;
+      margin-left: 0.35rem;
+      padding: 0.1rem;
+      display: flex;
+    }
+    &-progress-bar {
+      width: 1.2rem;
+      margin-right: 0.1rem;
+    }
   }
-  &-progress-bar{
-    width: 1.2rem;
-    margin-right: 0.1rem;
-  }
-}
   .videodetails {
     &-wrapper {
       display: flex;

@@ -103,6 +103,9 @@ h2 {
   align-self: center;
   min-width: 80%;
 }
+.btn.navbar-theme-btn {
+  min-width: 8.2rem;
+}
 .btn-text {
   padding: 0.25rem 1.15rem;
   display: inline-block;
@@ -143,11 +146,11 @@ h2 {
 
 .repeat-capture-btn {
   margin-bottom: 0.5rem;
-  margin-right: 0.5rem;
 }
 @media only screen and (min-width: 992px) {
   .repeat-capture-btn {
     margin-bottom: 0;
+    margin-right: 0.5rem;
   }
 }
 
@@ -162,12 +165,18 @@ h2 {
 }
 
 .videodetails-timer {
+  margin-bottom: 0.5rem;
   justify-content: center;
   align-items: center;
   background-color: white;
   height: 1.2rem;
   width: 6.5rem;
-  box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
+}
+@media only screen and (min-width: 992px) {
+  .videodetails-timer {
+    margin-bottom: initial;
+  }
 }
 
 .play-btn {
@@ -304,7 +313,7 @@ h2 {
 }
 @media only screen and (min-width: 992px) {
   .gif-content-img.uploadedGif {
-    width: 48%;
+    min-width: 14rem;
     margin: 0 0.5rem;
     margin-bottom: 2.5rem;
   }
@@ -342,15 +351,21 @@ h2 {
 }
 @media only screen and (min-width: 992px) {
   .video-content {
-    width: 100%;
+    min-width: 25rem;
   }
+}
+.video-buttons-wrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 0.5rem;
 }
 @media only screen and (min-width: 992px) {
   .video-buttons-wrapper {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
+    flex-direction: row;
     margin-left: auto;
+    margin-top: 0;
   }
 }
 .video-progress-bar {
@@ -455,7 +470,7 @@ header .header-content {
 .navbar-dropdown-theme-options-container.is-active {
   display: flex;
   position: absolute;
-  top: 1.9rem;
+  top: 2rem;
   width: 100%;
   margin-bottom: 0;
 }
@@ -487,7 +502,7 @@ main {
 }
 @media only screen and (min-width: 992px) {
   .creating-phase-window {
-    width: 60%;
+    max-width: 60%;
   }
 }
 .creating-phase-videodetails-wrapper {
@@ -574,6 +589,11 @@ main {
   padding: 2rem;
   margin-bottom: 1.5rem;
 }
+@media only screen and (min-width: 992px) {
+  .uploading-video-content-wrapper {
+    padding: 2rem 8rem;
+  }
+}
 .uploading-video-text {
   font-weight: bold;
 }
@@ -595,7 +615,12 @@ main {
 .success-buttons-wrapper {
   display: flex;
   flex-direction: column;
-  margin: 0 1rem;
+  margin-bottom: 1rem;
+}
+@media only screen and (min-width: 992px) {
+  .success-buttons-wrapper {
+    margin: 0 1rem;
+  }
 }
 .success-upload-content {
   display: flex;

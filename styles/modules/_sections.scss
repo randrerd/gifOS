@@ -73,7 +73,7 @@ header {
       &.is-active {
         display: flex;
         position: absolute;
-        top: 1.9rem;
+        top: 2rem;
         width: 100%;
         margin-bottom: 0;
       }
@@ -102,16 +102,16 @@ main {
       flex-direction: column;
     }
     &-window {
-      // display: flex;
       @include responsive(desktops){
-        width: 60%;
+        max-width: 60%;
       }
+      // display: flex;
       align-self: center;
       min-height: 16rem;
       justify-content: space-between;
     }
-    &-videodetails-wrapper{
-      @include responsive(desktops){
+    &-videodetails-wrapper {
+      @include responsive(desktops) {
         flex-direction: row;
         width: 100%;
       }
@@ -165,13 +165,12 @@ main {
     // display: flex;
     flex-direction: column;
     .cp-btn {
-      @include responsive(desktops){
+      @include responsive(desktops) {
         margin-top: 1rem;
       }
       margin-left: auto;
       display: flex;
       align-items: center;
-      
     }
   }
 }
@@ -183,7 +182,6 @@ main {
       &-timer {
         width: 80%;
         height: 1rem;
-  
       }
     }
   }
@@ -210,6 +208,9 @@ main {
       flex-direction: column;
     }
     &-content-wrapper {
+      @include responsive(desktops){
+        padding: 2rem 8rem;
+      }
       // display: flex;
       flex-direction: column;
       align-items: center;
@@ -231,21 +232,24 @@ main {
   &-progress-bar {
     margin-top: 1.5rem;
   }
-  &-gif-cancel-btn{
+  &-gif-cancel-btn {
     margin-top: auto;
   }
 }
 
 .success {
   &-buttons-wrapper {
+    @include responsive(desktops) {
+      margin: 0 1rem;
+    }
     display: flex;
     flex-direction: column;
-    margin: 0 1rem;
+    margin-bottom: 1rem;
   }
   &-upload-content {
     display: flex;
     flex-direction: column;
-    @include responsive(desktops){
+    @include responsive(desktops) {
       width: 100%;
     }
     p {
@@ -256,7 +260,7 @@ main {
     &-wrapper {
       // display: flex;
       flex-direction: column;
-      @include responsive(desktops){
+      @include responsive(desktops) {
         flex-direction: row;
       }
     }

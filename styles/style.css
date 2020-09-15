@@ -313,6 +313,7 @@ h2 {
   object-fit: cover;
   min-width: 100%;
   min-height: 100%;
+  max-height: 100%;
 }
 .gif-content-img.uploadedGif {
   width: 80%;

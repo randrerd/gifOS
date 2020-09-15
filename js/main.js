@@ -1,44 +1,44 @@
-"use strict";
+'use strict';
 
 /*Global Constants */
-const $APIKey = "AtDXUGwf0oBU7IXtdm8Ztz3zUP1ct6nO";
+const $APIKey = 'AtDXUGwf0oBU7IXtdm8Ztz3zUP1ct6nO';
 
 const navbarSection = (() => {
   /*DOM Cache*/
-  const $body = document.querySelector("body");
-  const $returnBtn = document.querySelector(".navbar-logo-container");
-  const $chooseThemeBtn = document.querySelector(".navbar-theme-btn");
-  const $startCreatingPhaseBtn = document.querySelector(".create-btn");
-  const $myGifsBtn = document.querySelector(".navbar-myGIFS-btn");
-  const $returnArrowBtn = document.querySelector(".navbar-return-arrow");
+  const $body = document.querySelector('body');
+  const $returnBtn = document.querySelector('.navbar-logo-container');
+  const $chooseThemeBtn = document.querySelector('.navbar-theme-btn');
+  const $startCreatingPhaseBtn = document.querySelector('.create-btn');
+  const $myGifsBtn = document.querySelector('.navbar-myGIFS-btn');
+  const $returnArrowBtn = document.querySelector('.navbar-return-arrow');
   const $themeOptionsContainer = document.querySelector(
-    ".navbar-dropdown-theme-options-container"
+    '.navbar-dropdown-theme-options-container'
   );
   const $themeOptionsElements = document.querySelectorAll(
-    ".navbar-dropdown-theme-option"
+    '.navbar-dropdown-theme-option'
   );
-  const $themeStylesheetLink = document.querySelector(".link-theme");
-  const $suggestionsSection = document.querySelector(".suggestions-container");
-  const $trendingSection = document.querySelector(".trending-container");
-  const $myGifsSection = document.querySelector(".myGifs-container");
+  const $themeStylesheetLink = document.querySelector('.link-theme');
+  const $suggestionsSection = document.querySelector('.suggestions-container');
+  const $trendingSection = document.querySelector('.trending-container');
+  const $myGifsSection = document.querySelector('.myGifs-container');
 
   /*Local variables*/
-  const themeOptions = ["sailor_day", "sailor_night"];
+  const themeOptions = ['sailor_day', 'sailor_night'];
 
   //When clicking outside the div containing the theme options, hides it
   //if visible
   document.onclick = function (e) {
-    if ($themeOptionsContainer.classList.contains("is-active")) {
+    if ($themeOptionsContainer.classList.contains('is-active')) {
       if (
         !(
-          e.target.classList.contains("navbar-theme-btn") ||
+          e.target.classList.contains('navbar-theme-btn') ||
           e.target.classList.contains(
-            "navbar-dropdown-theme-options-container"
+            'navbar-dropdown-theme-options-container'
           ) ||
-          e.target.classList.contains("navbar-theme-btn-text")
+          e.target.classList.contains('navbar-theme-btn-text')
         )
       ) {
-        $themeOptionsContainer.classList.toggle("is-active");
+        $themeOptionsContainer.classList.toggle('is-active');
       }
     }
   };
@@ -48,13 +48,13 @@ const navbarSection = (() => {
     showElements($myGifsSection, $returnArrowBtn);
   };
   $startCreatingPhaseBtn.onclick = function () {
-    window.location = "create.html";
+    window.location = 'create.html';
   };
   $returnBtn.onclick = function () {
-    window.location = "index.html";
+    window.location = 'index.html';
   };
   $chooseThemeBtn.onclick = function () {
-    $themeOptionsContainer.classList.toggle("is-active");
+    $themeOptionsContainer.classList.toggle('is-active');
   };
   $themeOptionsElements.forEach((option) => {
     //Sets theme option selected by user
@@ -63,40 +63,40 @@ const navbarSection = (() => {
         ? setColorOption(themeOptions[0])
         : setColorOption(themeOptions[1]);
       //Closes the div containing the theme options once user has selected
-      $themeOptionsContainer.classList.remove("is-active");
+      $themeOptionsContainer.classList.remove('is-active');
     };
   });
 
   function setColorOption(theme) {
-    $themeStylesheetLink.setAttribute("href", `styles/themes/${theme}.css`);
-    localStorage.setItem("themeOption", `${theme}`);
+    $themeStylesheetLink.setAttribute('href', `styles/themes/${theme}.css`);
+    localStorage.setItem('themeOption', `${theme}`);
   }
 })();
 
 const searchbarSection = (() => {
   //DOM Cache
-  const $inputBar = document.querySelector(".searchbox-input");
+  const $inputBar = document.querySelector('.searchbox-input');
   const $autocompleteContainer = document.querySelector(
-    ".searchbox-suggestions-container"
+    '.searchbox-suggestions-container'
   );
   const $autocompleteSuggestionItems = document.querySelectorAll(
-    ".searchbox-suggestions-text"
+    '.searchbox-suggestions-text'
   );
   const $autocompleteSuggestionButtons = document.querySelectorAll(
-    ".searchbox-suggestions-item"
+    '.searchbox-suggestions-item'
   );
-  const $submitBtn = document.querySelector(".searchbox-input-submit");
+  const $submitBtn = document.querySelector('.searchbox-input-submit');
   const $searchResultsWrapper = document.querySelector(
-    ".searchResults-content-wrapper"
+    '.searchResults-content-wrapper'
   );
   const $searchResultsContainer = document.querySelector(
-    ".searchResults-container"
+    '.searchResults-container'
   );
-  const $suggestionsSection = document.querySelector(".suggestions-container");
-  const $trendingSection = document.querySelector(".trending-container");
-  const $returnArrowBtn = document.querySelector(".navbar-return-arrow");
+  const $suggestionsSection = document.querySelector('.suggestions-container');
+  const $trendingSection = document.querySelector('.trending-container');
+  const $returnArrowBtn = document.querySelector('.navbar-return-arrow');
   const $searchHistoryContainer = document.querySelector(
-    ".searchbox-search-history-container"
+    '.searchbox-search-history-container'
   );
 
   //Local Bindings
@@ -173,11 +173,11 @@ const searchbarSection = (() => {
           results.data.forEach((object) => {
             checkGifRatio(object)
               ? appendToContainer(
-                  createGifElement(object, "result-large"),
+                  createGifElement(object, 'result-large'),
                   $searchResultsWrapper
                 )
               : appendToContainer(
-                  createGifElement(object, "result-small"),
+                  createGifElement(object, 'result-small'),
                   $searchResultsWrapper
                 );
           });
@@ -193,11 +193,11 @@ const searchbarSection = (() => {
 
             checkGifRatio(results.data[j])
               ? $searchResultsWrapper.replaceChild(
-                  createGifElement(results.data[j], "result-large"),
+                  createGifElement(results.data[j], 'result-large'),
                   oldGif
                 )
               : $searchResultsWrapper.replaceChild(
-                  createGifElement(results.data[j], "result-small"),
+                  createGifElement(results.data[j], 'result-small'),
                   oldGif
                 );
           }
@@ -213,12 +213,12 @@ const searchbarSection = (() => {
   function storeSearchHistory(term) {
     //Checks if there's already search history data stored
     //if not, then sets it
-    if (!localStorage.getItem("searchHistory")) {
-      localStorage.setItem("searchHistory", term);
+    if (!localStorage.getItem('searchHistory')) {
+      localStorage.setItem('searchHistory', term);
     } else {
-      let previousHistory = localStorage.getItem("searchHistory");
+      let previousHistory = localStorage.getItem('searchHistory');
       let newHistory = (previousHistory += `, ${term}`);
-      localStorage.setItem("searchHistory", newHistory);
+      localStorage.setItem('searchHistory', newHistory);
     }
   }
 
@@ -226,8 +226,8 @@ const searchbarSection = (() => {
     //Gets value from localStorage searchHistory key and
     //sets an array with each of the terms stored in the key
     //value
-    let keyValue = localStorage.getItem("searchHistory");
-    let searchHistoryArray = keyValue.split(", ");
+    let keyValue = localStorage.getItem('searchHistory');
+    let searchHistoryArray = keyValue.split(', ');
 
     let tags = addHashtagToSentences(searchHistoryArray);
 
@@ -236,14 +236,14 @@ const searchbarSection = (() => {
       //Renders tags from existing search history
       tags.forEach((tag) => {
         appendToContainer(
-          createGifElement(tag, "searchHistoryTag"),
+          createGifElement(tag, 'searchHistoryTag'),
           $searchHistoryContainer
         );
       });
     } else {
       //Renders tag for the last search made
       appendToContainer(
-        createGifElement(tags[tags.length - 1], "searchHistoryTag"),
+        createGifElement(tags[tags.length - 1], 'searchHistoryTag'),
         $searchHistoryContainer
       );
     }
@@ -253,7 +253,7 @@ const searchbarSection = (() => {
     let result = [];
 
     array.forEach((item) => {
-      let hashtaggedItem = "";
+      let hashtaggedItem = '';
       hashtaggedItem += `#${item}`;
       result.push(hashtaggedItem);
     });
@@ -284,7 +284,7 @@ const searchbarSection = (() => {
       });
       //Hides the autocomplete container when ESC key is used or when
       //the user deletes all input bar
-      if (e.keyCode === 27 || $inputBar.value === "") {
+      if (e.keyCode === 27 || $inputBar.value === '') {
         hideElements($autocompleteContainer);
       }
       //Performs the search action when ENTER key is used
@@ -296,7 +296,7 @@ const searchbarSection = (() => {
 
       //Removes disabled attribute to submit button
       //when user starts typing so thet can use it to submit search
-      $submitBtn.removeAttribute("disabled");
+      $submitBtn.removeAttribute('disabled');
     };
 
     function replacePlaceholders(...suggestedTerms) {
@@ -320,20 +320,20 @@ const searchbarSection = (() => {
 const suggestionsSection = (() => {
   /*DOM Cache*/
   const $suggestionsContainer = document.querySelector(
-    ".suggestions-parent-element"
+    '.suggestions-parent-element'
   );
 
   /*Local variables*/
   const suggestedSearchTerms = [
-    "midnight+gospel",
-    "bianca+del+rio",
-    "tiffany+pollard",
-    "soraya+montenegro",
-    "beyonce",
-    "trippy",
-    "amy+winehouse",
-    "frank+ocean",
-    "kali+uchis",
+    'midnight+gospel',
+    'bianca+del+rio',
+    'tiffany+pollard',
+    'soraya+montenegro',
+    'beyonce',
+    'trippy',
+    'amy+winehouse',
+    'frank+ocean',
+    'kali+uchis',
   ];
   const randomSuggestion = getRandomSuggestion(suggestedSearchTerms);
 
@@ -351,7 +351,7 @@ const suggestionsSection = (() => {
       let data = await response.json();
       data.data.forEach((element) => {
         appendToContainer(
-          createGifElement(element, "suggestions"),
+          createGifElement(element, 'suggestions'),
           $suggestionsContainer
         );
       });
@@ -365,14 +365,16 @@ const suggestionsSection = (() => {
 
 const trendingSection = (() => {
   /*DOM Cache*/
-  const $trendingContainer = document.querySelector(".trending-parent-element");
-  const $body = document.querySelector("body");
+  const $trendingContainer = document.querySelector('.trending-parent-element');
+  const $body = document.querySelector('body');
+  const $footer = document.querySelector('footer');
   let offset = 0;
+  let trendingLoaded = false;
 
   async function getTrending(defaultLoad = 12) {
     try {
       let response = await fetch(
-        `https://api.giphy.com/v1/gifs/trending?api_key=${$APIKey}&limit=12&rating=R&offset=${
+        `https://api.giphy.com/v1/gifs/trending?api_key=${$APIKey}&limit=6&rating=R&offset=${
           defaultLoad * offset
         }`
       );
@@ -380,11 +382,11 @@ const trendingSection = (() => {
       data.data.forEach((element) => {
         checkGifRatio(element)
           ? appendToContainer(
-              createGifElement(element, "trending-large"),
+              createGifElement(element, 'trending-large'),
               $trendingContainer
             )
           : appendToContainer(
-              createGifElement(element, "trending-small"),
+              createGifElement(element, 'trending-small'),
               $trendingContainer
             );
       });
@@ -393,28 +395,95 @@ const trendingSection = (() => {
       console.log(error);
     }
   }
-  getTrending();
+  for (let i = 0; i < 6; i++) {
+    appendToContainer(
+      createGifElement(null, 'trending-lazy'),
+      $trendingContainer
+    );
+  }
+
+  /*TO-DO:
+  - IF TRENDING CONTAINER CHILDNODE INTERSECTS AND TRENDING GIFS NOT LOADED, REPLACE LAZY ATTRIBUTES
+    FOR ELEMENTS BROUGHT BY THE API AND CHANGE TRENDINGLOADED TO TRUE
+    ELSE, ADD NEW ELEMENTS WITH NEW ELEMENTS FROM API
+
+  
+  */
+
+  if ('IntersectionObserver' in window) {
+    const options = {
+      threshold: 0.15, // Execute when button is 100% visible
+    };
+
+    // Create new observer object
+    let lazyImageCallback = function (entries, observer) {
+      // Loop through IntersectionObserverEntry objects
+      entries.forEach(function (entry) {
+        // Do these if the target intersects with the root
+        if (entry.isIntersecting) {
+          // let lazyImage = entry.target;
+          // lazyImage.src = lazyImage.dataset.src;
+          // lazyImage.classList.remove("lazy");
+          // lazyImageObserver.unobserve(lazyImage);
+          console.log('works');
+        }
+      });
+    };
+    let trendingChildren = $trendingContainer.childNodes;
+    let lazyImageObserver = new IntersectionObserver(lazyImageCallback, options)
+    // Loop through and observe each image
+    trendingChildren.forEach(function (lazyImage) {
+      lazyImageObserver.observe(lazyImage);
+    });
+    console.log($trendingContainer.childNodes);
+  }
+
+  // if ('IntersectionObserver' in window) {
+
+  //   const loadMoreCallback = (entries, observer) => {
+  //     entries.forEach((footer) => {
+  //       if (footer.isIntersecting) {
+  //         // postsLoaded = false;
+  //         // loadContent();
+  //         debugger
+  //       }
+  //     });
+  //   };
+
+  //   // Intersection Observer options
+  //   const options = {
+  //     threshold: 1.0 // Execute when button is 100% visible
+  //   };
+
+  //   let loadMoreObserver = new IntersectionObserver(loadMoreCallback, options);
+  //   loadMoreObserver.observe($footer);
+  // }
+
+  // Public Properties and Methods
+  // return {
+  //   init: loadContent
+  // };
 })();
 
 const myGifsSection = (() => {
-  const $myGifsContainer = document.querySelector(".myGifs-content-wrapper");
+  const $myGifsContainer = document.querySelector('.myGifs-content-wrapper');
 
-  if (!localStorage.getItem("uploadedGifs")) {
+  if (!localStorage.getItem('uploadedGifs')) {
     null;
   } else {
-    let uploadHistoryValue = localStorage.getItem("uploadedGifs");
-    let uploadHistoryIDs = uploadHistoryValue.split(", ");
+    let uploadHistoryValue = localStorage.getItem('uploadedGifs');
+    let uploadHistoryIDs = uploadHistoryValue.split(', ');
     uploadHistoryIDs.forEach((element) => {
       // appendToContainer(createGifElement(getUploadedGif(element), 'myGif'),$myGifsContainer);
       getUploadedGif(element).then((data) => {
         try {
           checkGifRatio(data)
             ? appendToContainer(
-                createGifElement(data, "myGif-large"),
+                createGifElement(data, 'myGif-large'),
                 $myGifsContainer
               )
             : appendToContainer(
-                createGifElement(data, "myGif-small"),
+                createGifElement(data, 'myGif-small'),
                 $myGifsContainer
               );
         } catch (error) {
@@ -453,8 +522,8 @@ function getRandomArbitrary(min, max) {
 }
 
 function addHashtagToWords(string) {
-  let sentence = string.split(" ");
-  let newSentence = "";
+  let sentence = string.split(' ');
+  let newSentence = '';
   for (let i = 0; i <= 3; i++) {
     let word = sentence[i];
     newSentence += `#${word} `;
@@ -463,14 +532,14 @@ function addHashtagToWords(string) {
 }
 
 function createGifElement(object, type) {
-  const $newContainer = document.createElement("div");
+  const $newContainer = document.createElement('div');
 
   switch (type) {
-    case "searchHistoryTag":
+    case 'searchHistoryTag':
       $newContainer.innerHTML = `<a class="searchbox-autocomplete-history-item gif-content-details-btn">${object}</a>`;
       return $newContainer.firstChild;
 
-    case "suggestions":
+    case 'suggestions':
       $newContainer.innerHTML = `<div class="gif-container">
       <div class="gif-header-container">
         <h2 class="gif-title">${object.title}</h2>
@@ -487,7 +556,7 @@ function createGifElement(object, type) {
     </div>`;
       return $newContainer.firstChild;
 
-    case "trending-small":
+    case 'trending-small':
       $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">
       <img
         src="${object.images.original.url}"
@@ -498,7 +567,7 @@ function createGifElement(object, type) {
     </div>`;
       return $newContainer.firstChild;
 
-    case "trending-large":
+    case 'trending-large':
       $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
       <img
         src="${object.images.original.url}"
@@ -508,7 +577,7 @@ function createGifElement(object, type) {
       <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
     </div>`;
       return $newContainer.firstChild;
-    case "result-small":
+    case 'result-small':
       $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">
         <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
         <img
@@ -521,7 +590,7 @@ function createGifElement(object, type) {
       </div>`;
       return $newContainer.firstChild;
 
-    case "result-large":
+    case 'result-large':
       $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
         <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
         <img
@@ -534,7 +603,7 @@ function createGifElement(object, type) {
       </div>`;
       return $newContainer.firstChild;
 
-    case "myGif-large":
+    case 'myGif-large':
       $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
         <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
         <img
@@ -545,7 +614,7 @@ function createGifElement(object, type) {
         </a>
       </div>`;
       return $newContainer.firstChild;
-    case "myGif-small":
+    case 'myGif-small':
       $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">
         <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
         <img
@@ -554,6 +623,16 @@ function createGifElement(object, type) {
           class="gif-content-img loading-animation"
         />
         </a>
+      </div>`;
+      return $newContainer.firstChild;
+    case 'trending-lazy':
+      $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
+        <img
+          src="${null}"
+          alt="${null}"
+          class="gif-content-img loading-animation"
+        />
+        <h2 class="gif-title-tagline">loading</h2>
       </div>`;
       return $newContainer.firstChild;
   }
@@ -565,21 +644,21 @@ function appendToContainer(element, parent) {
 
 function hideElements(...elements) {
   elements.forEach((element) => {
-    element.classList.add("hidden");
+    element.classList.add('hidden');
   });
 }
 function showElements(...elements) {
   elements.forEach((element) => {
-    element.classList.remove("hidden");
+    element.classList.remove('hidden');
   });
 }
 function addFlex(...elements) {
   elements.forEach((element) => {
-    element.classList.add("flex");
+    element.classList.add('flex');
   });
 }
 function removeFlex(...elements) {
   elements.forEach((element) => {
-    element.classList.remove("flex");
+    element.classList.remove('flex');
   });
 }

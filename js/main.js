@@ -116,10 +116,10 @@ const searchbarSection = (() => {
     };
   });
 
-  async function getSearchResults(term) {
+  async function getSearchResults(term, offset) {
     try {
       let response = await fetch(
-        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=0&limit=12`
+        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=${offset}&limit=4`
       );
       let data = await response.json();
       return data;
@@ -128,9 +128,9 @@ const searchbarSection = (() => {
     }
   }
 
-  function showResults(term) {
+ async function showResults(term) {
     try {
-      let data = getSearchResults(term);
+      let data = await getSearchResults(term);
 
       //Updates container header with the search term
       $searchResultsContainer.childNodes[1].innerText = `Gifs de ${term}`;
@@ -168,9 +168,9 @@ const searchbarSection = (() => {
           $searchHistoryContainer,
           $searchHistoryContainer
         );
-
-        data.then((results) => {
-          results.data.forEach((object) => {
+          
+        // data.then((results) => {
+          data.data.forEach((object) => {
             checkGifRatio(object)
               ? appendToContainer(
                   createGifElement(object, 'result-large'),
@@ -181,27 +181,27 @@ const searchbarSection = (() => {
                   $searchResultsWrapper
                 );
           });
-        });
+        // });
       } else {
         hideElements($autocompleteContainer);
         //Replaces previous gif elements with the results from
         //the last search made
-        data.then((results) => {
-          for (let j = 0; j < results.data.length; j++) {
+        // data.then((results) => {
+          for (let j = 0; j < data.data.length; j++) {
             //Skips first iteration since first child is a #text non visible element
             const oldGif = $searchResultsWrapper.childNodes[j + 1];
 
-            checkGifRatio(results.data[j])
+            checkGifRatio(data.data[j])
               ? $searchResultsWrapper.replaceChild(
-                  createGifElement(results.data[j], 'result-large'),
+                  createGifElement(data.data[j], 'result-large'),
                   oldGif
                 )
               : $searchResultsWrapper.replaceChild(
-                  createGifElement(results.data[j], 'result-small'),
+                  createGifElement(data.data[j], 'result-small'),
                   oldGif
                 );
           }
-        });
+        // });
       }
 
       searchCounter++;
@@ -209,6 +209,7 @@ const searchbarSection = (() => {
       console.log(error);
     }
   }
+  
 
   function storeSearchHistory(term) {
     //Checks if there's already search history data stored
@@ -376,10 +377,10 @@ const trendingSection = (() => {
   const $trendingContainer = document.querySelector('.trending-parent-element');
   const $body = document.querySelector('body');
   const $footer = document.querySelector('footer');
-  let offset = 0;
+
   let trendingLoaded = false;
 
-  async function getTrending() {
+  async function getTrending(offset) {
     try {
       let response = await fetch(
         `https://api.giphy.com/v1/gifs/trending?api_key=${$APIKey}&limit=4&rating=R&offset=${offset}`
@@ -410,7 +411,6 @@ const trendingSection = (() => {
         });
       }
 
-      offset++;
     } catch (error) {
       console.log(error);
     }
@@ -423,36 +423,73 @@ const trendingSection = (() => {
     );
   }
 
+  // if ('IntersectionObserver' in window) {
+  //   const options = {
+  //     threshold: 0.15,
+  //   };
+  //   // Create new observer object
+  //   let lazyImageCallback = (entries, observer) => {
+  //     // Loop through IntersectionObserverEntry objects
+  //     entries.forEach(function (entry) {
+  //       if (entry.isIntersecting) {
+  //         offset += 4;
+  //         let lazyImage = entry.target;
+  //         getTrending();
+  //       }
+  //     });
+  //   };
+  //   let trendingChildren = $trendingContainer.childNodes;
+  //   let lazyImageObserver = new IntersectionObserver(
+  //     lazyImageCallback,
+  //     options
+  //   );
+  //   // Loop through and observe each image
+  //   trendingChildren.forEach(function (lazyImage) {
+  //     lazyImageObserver.observe(lazyImage);
+  //   });
+
+  //   //Observe footer and loads new trending images
+  //   lazyImageObserver.observe($footer);
+  //   console.log($trendingContainer.childNodes);
+  // }
+  lazyLoad(getTrending, $trendingContainer, $footer)
+})();
+
+function lazyLoad(cb, mainContainer){
+  let offset = 0;
+  let $footer = document.querySelector('footer')
+
   if ('IntersectionObserver' in window) {
     const options = {
       threshold: 0.15,
     };
     // Create new observer object
-    let lazyImageCallback = function (entries, observer) {
+    let lazyImageCallback = (entries, observer) => {
       // Loop through IntersectionObserverEntry objects
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
+          cb(offset);
           offset += 4;
           let lazyImage = entry.target;
-          getTrending();
+          
         }
       });
     };
-    let trendingChildren = $trendingContainer.childNodes;
+    let containerChildren = mainContainer.childNodes;
     let lazyImageObserver = new IntersectionObserver(
       lazyImageCallback,
       options
     );
     // Loop through and observe each image
-    trendingChildren.forEach(function (lazyImage) {
+   containerChildren.forEach((lazyImage) => {
       lazyImageObserver.observe(lazyImage);
     });
 
-    //Observe footer and loads new trending images
+    //Observe footer and loads new images
     lazyImageObserver.observe($footer);
-    console.log($trendingContainer.childNodes);
+ 
   }
-})();
+}
 
 const myGifsSection = (() => {
   const $myGifsContainer = document.querySelector('.myGifs-content-wrapper');

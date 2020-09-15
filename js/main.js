@@ -349,50 +349,27 @@ const suggestionsSection = (() => {
          &limit=4&rating=G&lang=en&offset=${getRandomArbitrary(0, 20)}`
       );
       let data = await response.json();
+
+      let i = 0;
       data.data.forEach((element) => {
-        appendToContainer(
-          createGifElement(element, 'suggestions'),
-          $suggestionsContainer
-        );
+        replaceLazy($suggestionsContainer, element, 'suggestions', i);
+        i++;
       });
     } catch (error) {
       console.log(error);
     }
   }
-  //Calls the async function
-  getSuggestions(randomSuggestion);
-})();
 
-function replaceLazy(parent, element, size, i) {
-  const childNodeArray = parent.childNodes;
-  // for (let i = 0; i < childNodeArray.length; i++) {
-  // const child = childNodeArray[i];
-  let child = childNodeArray[i];
-  switch (size) {
-    case 'small':
-      child.outerHTML = `<div class="gif-container gif-and-tagline-wrapper">
-    <img
-      src="${element.images.original.url}"
-      alt="${element.title}"
-      class="gif-content-img loading-animation"
-    />
-    <h2 class="gif-title-tagline">${addHashtagToWords(element.title)}</h2>
-  </div>`;
-      break;
-    case 'large':
-      child.outerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
-    <img
-      src="${element.images.original.url}"
-      alt="${element.title}"
-      class="gif-content-img loading-animation"
-    />
-    <h2 class="gif-title-tagline">${addHashtagToWords(element.title)}</h2>
-  </div>`;
-      break;
+  for (let i = 0; i < 4; i++) {
+    appendToContainer(
+      createGifElement(null, 'suggestions-lazy'),
+      $suggestionsContainer
+    );
   }
 
-  // }
-}
+  // Calls the async function
+  getSuggestions(randomSuggestion);
+})();
 
 const trendingSection = (() => {
   /*DOM Cache*/
@@ -402,12 +379,10 @@ const trendingSection = (() => {
   let offset = 0;
   let trendingLoaded = false;
 
-  async function getTrending(defaultLoad = 6) {
+  async function getTrending() {
     try {
       let response = await fetch(
-        `https://api.giphy.com/v1/gifs/trending?api_key=${$APIKey}&limit=6&rating=R&offset=${
-          defaultLoad * offset
-        }`
+        `https://api.giphy.com/v1/gifs/trending?api_key=${$APIKey}&limit=4&rating=R&offset=${offset}`
       );
       let data = await response.json();
 
@@ -415,8 +390,8 @@ const trendingSection = (() => {
         let i = 0;
         data.data.forEach((element) => {
           checkGifRatio(element)
-            ? replaceLazy($trendingContainer, element, 'large', i)
-            : replaceLazy($trendingContainer, element, 'small', i);
+            ? replaceLazy($trendingContainer, element, 'trending-large', i)
+            : replaceLazy($trendingContainer, element, 'trending-small', i);
 
           i++;
         });
@@ -441,7 +416,7 @@ const trendingSection = (() => {
     }
   }
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 4; i++) {
     appendToContainer(
       createGifElement(null, 'trending-lazy'),
       $trendingContainer
@@ -457,7 +432,7 @@ const trendingSection = (() => {
       // Loop through IntersectionObserverEntry objects
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          offset += 6;
+          offset += 4;
           let lazyImage = entry.target;
           getTrending();
         }
@@ -569,6 +544,22 @@ function createGifElement(object, type) {
       </div>
     </div>`;
       return $newContainer.firstChild;
+    case 'suggestions-lazy':
+      $newContainer.innerHTML = `<div class="gif-container">
+        <div class="gif-header-container">
+          <h2 class="gif-title">Loading...</h2>
+          <button class="gif-times-btn"></button>
+        </div>
+        <div class="gif-content-wrapper">
+          <img
+            src="#"
+            alt="Loading..."
+            class="gif-content-img loading-animation"
+          />
+          <a target=_blank href="#" class="gif-content-details-btn">Ver más...</a>
+        </div>
+      </div>`;
+      return $newContainer.firstChild;
 
     case 'trending-small':
       $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">
@@ -590,6 +581,16 @@ function createGifElement(object, type) {
       />
       <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
     </div>`;
+      return $newContainer.firstChild;
+    case 'trending-lazy':
+      $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
+          <img
+            src="#"
+            alt="${null}"
+            class="gif-content-img loading-animation"
+          />
+          <h2 class="gif-title-tagline">loading</h2>
+        </div>`;
       return $newContainer.firstChild;
     case 'result-small':
       $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">
@@ -639,16 +640,49 @@ function createGifElement(object, type) {
         </a>
       </div>`;
       return $newContainer.firstChild;
-    case 'trending-lazy':
-      $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
-        <img
-          src="#"
-          alt="${null}"
-          class="gif-content-img loading-animation"
-        />
-        <h2 class="gif-title-tagline">loading</h2>
+  }
+}
+
+function replaceLazy(parent, object, type, i) {
+  const childNodeArray = parent.childNodes;
+  let child = childNodeArray[i];
+  switch (type) {
+    case 'trending-small':
+      child.outerHTML = `<div class="gif-container gif-and-tagline-wrapper">
+    <img
+      src="${object.images.original.url}"
+      alt="${object.title}"
+      class="gif-content-img loading-animation"
+    />
+    <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
+  </div>`;
+      break;
+    case 'trending-large':
+      child.outerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
+    <img
+      src="${object.images.original.url}"
+      alt="${object.title}"
+      class="gif-content-img loading-animation"
+    />
+    <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
+  </div>`;
+      break;
+    case 'suggestions':
+      child.outerHTML = `<div class="gif-container">
+        <div class="gif-header-container">
+          <h2 class="gif-title">${object.title}</h2>
+          <button class="gif-times-btn"></button>
+        </div>
+        <div class="gif-content-wrapper">
+          <img
+            src="${object.images.original.url}"
+            alt="${object.title}"
+            class="gif-content-img loading-animation"
+          />
+          <a target=_blank href="${object.bitly_url}" class="gif-content-details-btn">Ver más...</a>
+        </div>
       </div>`;
-      return $newContainer.firstChild;
+      break;
   }
 }
 

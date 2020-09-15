@@ -363,6 +363,37 @@ const suggestionsSection = (() => {
   getSuggestions(randomSuggestion);
 })();
 
+function replaceLazy(parent, element, size, i) {
+  const childNodeArray = parent.childNodes;
+  // for (let i = 0; i < childNodeArray.length; i++) {
+  // const child = childNodeArray[i];
+  let child = childNodeArray[i];
+  switch (size) {
+    case 'small':
+      child.outerHTML = `<div class="gif-container gif-and-tagline-wrapper">
+    <img
+      src="${element.images.original.url}"
+      alt="${element.title}"
+      class="gif-content-img loading-animation"
+    />
+    <h2 class="gif-title-tagline">${addHashtagToWords(element.title)}</h2>
+  </div>`;
+      break;
+    case 'large':
+      child.outerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
+    <img
+      src="${element.images.original.url}"
+      alt="${element.title}"
+      class="gif-content-img loading-animation"
+    />
+    <h2 class="gif-title-tagline">${addHashtagToWords(element.title)}</h2>
+  </div>`;
+      break;
+  }
+
+  // }
+}
+
 const trendingSection = (() => {
   /*DOM Cache*/
   const $trendingContainer = document.querySelector('.trending-parent-element');
@@ -371,7 +402,7 @@ const trendingSection = (() => {
   let offset = 0;
   let trendingLoaded = false;
 
-  async function getTrending(defaultLoad = 12) {
+  async function getTrending(defaultLoad = 6) {
     try {
       let response = await fetch(
         `https://api.giphy.com/v1/gifs/trending?api_key=${$APIKey}&limit=6&rating=R&offset=${
@@ -379,22 +410,37 @@ const trendingSection = (() => {
         }`
       );
       let data = await response.json();
-      data.data.forEach((element) => {
-        checkGifRatio(element)
-          ? appendToContainer(
-              createGifElement(element, 'trending-large'),
-              $trendingContainer
-            )
-          : appendToContainer(
-              createGifElement(element, 'trending-small'),
-              $trendingContainer
-            );
-      });
+
+      if (!trendingLoaded) {
+        let i = 0;
+        data.data.forEach((element) => {
+          checkGifRatio(element)
+            ? replaceLazy($trendingContainer, element, 'large', i)
+            : replaceLazy($trendingContainer, element, 'small', i);
+
+          i++;
+        });
+        trendingLoaded = true;
+      } else {
+        data.data.forEach((element) => {
+          checkGifRatio(element)
+            ? appendToContainer(
+                createGifElement(element, 'trending-large'),
+                $trendingContainer
+              )
+            : appendToContainer(
+                createGifElement(element, 'trending-small'),
+                $trendingContainer
+              );
+        });
+      }
+
       offset++;
     } catch (error) {
       console.log(error);
     }
   }
+
   for (let i = 0; i < 6; i++) {
     appendToContainer(
       createGifElement(null, 'trending-lazy'),
@@ -402,67 +448,35 @@ const trendingSection = (() => {
     );
   }
 
-  /*TO-DO:
-  - IF TRENDING CONTAINER CHILDNODE INTERSECTS AND TRENDING GIFS NOT LOADED, REPLACE LAZY ATTRIBUTES
-    FOR ELEMENTS BROUGHT BY THE API AND CHANGE TRENDINGLOADED TO TRUE
-    ELSE, ADD NEW ELEMENTS WITH NEW ELEMENTS FROM API
-
-  
-  */
-
   if ('IntersectionObserver' in window) {
     const options = {
-      threshold: 0.15, // Execute when button is 100% visible
+      threshold: 0.15,
     };
-
     // Create new observer object
     let lazyImageCallback = function (entries, observer) {
       // Loop through IntersectionObserverEntry objects
       entries.forEach(function (entry) {
-        // Do these if the target intersects with the root
         if (entry.isIntersecting) {
-          // let lazyImage = entry.target;
-          // lazyImage.src = lazyImage.dataset.src;
-          // lazyImage.classList.remove("lazy");
-          // lazyImageObserver.unobserve(lazyImage);
-          console.log('works');
+          offset += 6;
+          let lazyImage = entry.target;
+          getTrending();
         }
       });
     };
     let trendingChildren = $trendingContainer.childNodes;
-    let lazyImageObserver = new IntersectionObserver(lazyImageCallback, options)
+    let lazyImageObserver = new IntersectionObserver(
+      lazyImageCallback,
+      options
+    );
     // Loop through and observe each image
     trendingChildren.forEach(function (lazyImage) {
       lazyImageObserver.observe(lazyImage);
     });
+
+    //Observe footer and loads new trending images
+    lazyImageObserver.observe($footer);
     console.log($trendingContainer.childNodes);
   }
-
-  // if ('IntersectionObserver' in window) {
-
-  //   const loadMoreCallback = (entries, observer) => {
-  //     entries.forEach((footer) => {
-  //       if (footer.isIntersecting) {
-  //         // postsLoaded = false;
-  //         // loadContent();
-  //         debugger
-  //       }
-  //     });
-  //   };
-
-  //   // Intersection Observer options
-  //   const options = {
-  //     threshold: 1.0 // Execute when button is 100% visible
-  //   };
-
-  //   let loadMoreObserver = new IntersectionObserver(loadMoreCallback, options);
-  //   loadMoreObserver.observe($footer);
-  // }
-
-  // Public Properties and Methods
-  // return {
-  //   init: loadContent
-  // };
 })();
 
 const myGifsSection = (() => {
@@ -628,7 +642,7 @@ function createGifElement(object, type) {
     case 'trending-lazy':
       $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
         <img
-          src="${null}"
+          src="#"
           alt="${null}"
           class="gif-content-img loading-animation"
         />

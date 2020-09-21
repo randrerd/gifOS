@@ -101,61 +101,40 @@ const searchbarSection = (() => {
 
   //Local Bindings
   let mainSuggestions = [];
-  let searchCounter = 0;
+
+  function getSearchHistory() {
+    let searchHistory = localStorage.getItem('searchHistory');
+    if (searchHistory) {
+      let terms = searchHistory.split(', ');
+      return terms;
+    } else return false;
+  }
 
   //Event listeners
 
   $submitBtn.onclick = function () {
-    showResults($inputBar.value);
+    getSearchResults(0, $inputBar.value);
   };
+
   $autocompleteSuggestionButtons.forEach((suggestion) => {
     suggestion.onclick = function () {
       let suggestionTerm = suggestion.childNodes[1].innerText;
       $inputBar.value = suggestionTerm;
-      showResults($inputBar.value);
+      getSearchResults(0, $inputBar.value);
     };
   });
 
-  async function getSearchResults(term, offset) {
+
+  async function getSearchResults(offset, term) {
     try {
       let response = await fetch(
         `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=${offset}&limit=4`
       );
       let data = await response.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+      const searchHidden = $searchResultsContainer.classList.contains('hidden');
+      const searchedTerms = getSearchHistory();
 
- async function showResults(term) {
-    try {
-      let data = await getSearchResults(term);
-
-      //Updates container header with the search term
-      $searchResultsContainer.childNodes[1].innerText = `Gifs de ${term}`;
-
-      //Stores current search to search history
-      storeSearchHistory(term);
-
-      //Shows the  search history as tag buttons
-      //right below the search container
-      renderTags();
-
-      //Event listener that triggers new search when user clicks
-      //on one of the tags
-      $searchHistoryContainer.childNodes.forEach((tag) => {
-        tag.onclick = function () {
-          let tagText = tag.innerText;
-          //Removes the '#' symbol from the tag for it
-          //to be searchable
-          let searchableTerm = tagText.slice(1, tagText.length);
-          $inputBar.value = searchableTerm;
-          showResults(searchableTerm);
-        };
-      });
-
-      if (!searchCounter) {
+      if (searchHidden) {
         //On first search
         hideElements(
           $trendingSection,
@@ -168,49 +147,52 @@ const searchbarSection = (() => {
           $searchHistoryContainer,
           $searchHistoryContainer
         );
-          
-        // data.then((results) => {
-          data.data.forEach((object) => {
-            checkGifRatio(object)
-              ? appendToContainer(
-                  createGifElement(object, 'result-large'),
-                  $searchResultsWrapper
-                )
-              : appendToContainer(
-                  createGifElement(object, 'result-small'),
-                  $searchResultsWrapper
-                );
-          });
-        // });
       } else {
         hideElements($autocompleteContainer);
-        //Replaces previous gif elements with the results from
-        //the last search made
-        // data.then((results) => {
-          for (let j = 0; j < data.data.length; j++) {
-            //Skips first iteration since first child is a #text non visible element
-            const oldGif = $searchResultsWrapper.childNodes[j + 1];
+      }
+      data.data.forEach((element) => {
+        checkGifRatio(element)
+          ? appendToContainer(
+              createGifElement(element, 'result-large'),
+              $searchResultsWrapper
+            )
+          : appendToContainer(
+              createGifElement(element, 'result-small'),
+              $searchResultsWrapper
+            );
+      });
 
-            checkGifRatio(data.data[j])
-              ? $searchResultsWrapper.replaceChild(
-                  createGifElement(data.data[j], 'result-large'),
-                  oldGif
-                )
-              : $searchResultsWrapper.replaceChild(
-                  createGifElement(data.data[j], 'result-small'),
-                  oldGif
-                );
-          }
-        // });
+      if (!(term === searchedTerms[searchedTerms.length - 1])) {
+        //When function not being called by lazyload
+        storeSearchHistory(term);
+        renderTags();
+        const array = Array.from($searchResultsWrapper.children);
+        array.forEach((element) => {
+          element.remove();
+        });
       }
 
-      searchCounter++;
-    } catch (error) {
-      console.log(error);
+
+      $searchHistoryContainer.childNodes.forEach((tag) => {
+        tag.onclick = function () {
+          let tagText = tag.innerText;
+          //Removes the '#' symbol from the tag for it
+          //to be searchable
+          let searchableTerm = tagText.slice(1, tagText.length);
+          $inputBar.value = searchableTerm;
+          getSearchResults(0, searchableTerm);
+        };
+      });
+
+      //Updates container header with the search term
+      $searchResultsContainer.childNodes[1].innerText = `Gifs de ${term}`;
+
+    } catch (err) {
+      console.log(err);
     }
   }
-  
-
+ 
+  lazyLoad(getSearchResults, $searchResultsWrapper);
   function storeSearchHistory(term) {
     //Checks if there's already search history data stored
     //if not, then sets it
@@ -290,7 +272,7 @@ const searchbarSection = (() => {
       }
       //Performs the search action when ENTER key is used
       else if (e.keyCode === 13) {
-        showResults($inputBar.value);
+        getSearchResults(0, $inputBar.value);
       }
       //Removes the first four elements from the array to store the new suggestions
       let oldItems = mainSuggestions.splice(0, 4);
@@ -410,7 +392,6 @@ const trendingSection = (() => {
               );
         });
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -422,42 +403,13 @@ const trendingSection = (() => {
       $trendingContainer
     );
   }
-
-  // if ('IntersectionObserver' in window) {
-  //   const options = {
-  //     threshold: 0.15,
-  //   };
-  //   // Create new observer object
-  //   let lazyImageCallback = (entries, observer) => {
-  //     // Loop through IntersectionObserverEntry objects
-  //     entries.forEach(function (entry) {
-  //       if (entry.isIntersecting) {
-  //         offset += 4;
-  //         let lazyImage = entry.target;
-  //         getTrending();
-  //       }
-  //     });
-  //   };
-  //   let trendingChildren = $trendingContainer.childNodes;
-  //   let lazyImageObserver = new IntersectionObserver(
-  //     lazyImageCallback,
-  //     options
-  //   );
-  //   // Loop through and observe each image
-  //   trendingChildren.forEach(function (lazyImage) {
-  //     lazyImageObserver.observe(lazyImage);
-  //   });
-
-  //   //Observe footer and loads new trending images
-  //   lazyImageObserver.observe($footer);
-  //   console.log($trendingContainer.childNodes);
-  // }
-  lazyLoad(getTrending, $trendingContainer, $footer)
+  lazyLoad(getTrending, $trendingContainer);
 })();
 
-function lazyLoad(cb, mainContainer){
+function lazyLoad(cb, mainContainer) {
   let offset = 0;
-  let $footer = document.querySelector('footer')
+  const $footer = document.querySelector('footer');
+  const $inputBar = document.querySelector('.searchbox-input');
 
   if ('IntersectionObserver' in window) {
     const options = {
@@ -468,26 +420,28 @@ function lazyLoad(cb, mainContainer){
       // Loop through IntersectionObserverEntry objects
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          cb(offset);
+          mainContainer.classList.contains('searchResults-content-wrapper')
+            ? cb(offset, $inputBar.value)
+            : cb(offset);
           offset += 4;
-          let lazyImage = entry.target;
-          
         }
       });
     };
     let containerChildren = mainContainer.childNodes;
+
     let lazyImageObserver = new IntersectionObserver(
       lazyImageCallback,
       options
     );
-    // Loop through and observe each image
-   containerChildren.forEach((lazyImage) => {
-      lazyImageObserver.observe(lazyImage);
-    });
+    // Loop through and observe each image if not a search
+    if (!mainContainer.classList.contains('searchResults-content-wrapper')) {
+      containerChildren.forEach((lazyImage) => {
+        lazyImageObserver.observe(lazyImage);
+      });
+    }
 
     //Observe footer and loads new images
     lazyImageObserver.observe($footer);
- 
   }
 }
 
@@ -655,6 +609,19 @@ function createGifElement(object, type) {
       </div>`;
       return $newContainer.firstChild;
 
+    case 'result-lazy':
+      $newContainer.innerHTML = `<div class="gif-container gif-and-tagline-wrapper">
+          <a target="_blank" href="#" class="gif-result-link">
+          <img
+            src="#"
+            alt="Loading"
+            class="gif-content-img loading-animation"
+          />
+          <h2 class="gif-title-tagline">Loading</h2>
+          </a>
+        </div>`;
+      return $newContainer.firstChild;
+
     case 'myGif-large':
       $newContainer.innerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
         <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
@@ -719,6 +686,31 @@ function replaceLazy(parent, object, type, i) {
           <a target=_blank href="${object.bitly_url}" class="gif-content-details-btn">Ver más...</a>
         </div>
       </div>`;
+      break;
+    case 'result-small':
+      child.outerHTML = `<div class="gif-container gif-and-tagline-wrapper">
+          <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
+          <img
+            src="${object.images.original.url}"
+            alt="${object.title}"
+            class="gif-content-img loading-animation"
+          />
+          <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
+          </a>
+        </div>`;
+      break;
+
+    case 'result-large':
+      child.outerHTML = `<div class="gif-container gif-large gif-and-tagline-wrapper">
+          <a target="_blank" href="${object.bitly_url}" class="gif-result-link">
+          <img
+            src="${object.images.original.url}"
+            alt="${object.title}"
+            class="gif-content-img loading-animation"
+          />
+          <h2 class="gif-title-tagline">${addHashtagToWords(object.title)}</h2>
+          </a>
+        </div>`;
       break;
   }
 }

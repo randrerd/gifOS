@@ -123,16 +123,17 @@ const searchbarSection = (() => {
       getSearchResults(0, $inputBar.value);
     };
   });
-
-
-  async function getSearchResults(offset, term) {
+  let offset = 0;
+  async function getSearchResults(externalOffset, term) {
     try {
-      let response = await fetch(
-        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=${offset}&limit=4`
-      );
-      let data = await response.json();
       const searchHidden = $searchResultsContainer.classList.contains('hidden');
       const searchedTerms = getSearchHistory();
+
+      let response = await fetch(
+        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=${offset + externalOffset}&limit=8`
+      );
+      let data = await response.json();
+     
 
       if (searchHidden) {
         //On first search
@@ -170,8 +171,9 @@ const searchbarSection = (() => {
         array.forEach((element) => {
           element.remove();
         });
+      } else {
+        offset += 8;
       }
-
 
       $searchHistoryContainer.childNodes.forEach((tag) => {
         tag.onclick = function () {
@@ -186,13 +188,12 @@ const searchbarSection = (() => {
 
       //Updates container header with the search term
       $searchResultsContainer.childNodes[1].innerText = `Gifs de ${term}`;
-
+      lazyLoad(getSearchResults, $searchResultsWrapper);
     } catch (err) {
       console.log(err);
     }
   }
- 
-  lazyLoad(getSearchResults, $searchResultsWrapper);
+
   function storeSearchHistory(term) {
     //Checks if there's already search history data stored
     //if not, then sets it
@@ -365,7 +366,7 @@ const trendingSection = (() => {
   async function getTrending(offset) {
     try {
       let response = await fetch(
-        `https://api.giphy.com/v1/gifs/trending?api_key=${$APIKey}&limit=4&rating=R&offset=${offset}`
+        `https://api.giphy.com/v1/gifs/trending?api_key=${$APIKey}&limit=8&rating=R&offset=${offset}`
       );
       let data = await response.json();
 
@@ -397,7 +398,7 @@ const trendingSection = (() => {
     }
   }
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 8; i++) {
     appendToContainer(
       createGifElement(null, 'trending-lazy'),
       $trendingContainer
@@ -420,10 +421,11 @@ function lazyLoad(cb, mainContainer) {
       // Loop through IntersectionObserverEntry objects
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
+          console.log('intersecting')
           mainContainer.classList.contains('searchResults-content-wrapper')
             ? cb(offset, $inputBar.value)
             : cb(offset);
-          offset += 4;
+          offset += 8;
         }
       });
     };

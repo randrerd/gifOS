@@ -101,6 +101,7 @@ const searchbarSection = (() => {
 
   //Local Bindings
   let mainSuggestions = [];
+  let offset = 0;
 
   function getSearchHistory() {
     let searchHistory = localStorage.getItem('searchHistory');
@@ -123,17 +124,27 @@ const searchbarSection = (() => {
       getSearchResults(0, $inputBar.value);
     };
   });
-  let offset = 0;
+
   async function getSearchResults(externalOffset, term) {
     try {
       const searchHidden = $searchResultsContainer.classList.contains('hidden');
       const searchedTerms = getSearchHistory();
-
+  
+      if (!(term === searchedTerms[searchedTerms.length - 1])) {
+        //When function not being called by lazyload
+        storeSearchHistory(term);
+        renderTags();
+        const array = Array.from($searchResultsWrapper.children);
+        array.forEach((element) => {
+          element.remove();
+        });
+      } else {
+        offset += 8;
+      }
       let response = await fetch(
-        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=${offset + externalOffset}&limit=8`
+        `https://api.giphy.com/v1/gifs/search?api_key=${$APIKey}&q=${term}&offset=${offset}&limit=8`
       );
       let data = await response.json();
-     
 
       if (searchHidden) {
         //On first search
@@ -151,6 +162,7 @@ const searchbarSection = (() => {
       } else {
         hideElements($autocompleteContainer);
       }
+
       data.data.forEach((element) => {
         checkGifRatio(element)
           ? appendToContainer(
@@ -162,18 +174,6 @@ const searchbarSection = (() => {
               $searchResultsWrapper
             );
       });
-
-      if (!(term === searchedTerms[searchedTerms.length - 1])) {
-        //When function not being called by lazyload
-        storeSearchHistory(term);
-        renderTags();
-        const array = Array.from($searchResultsWrapper.children);
-        array.forEach((element) => {
-          element.remove();
-        });
-      } else {
-        offset += 8;
-      }
 
       $searchHistoryContainer.childNodes.forEach((tag) => {
         tag.onclick = function () {
@@ -421,7 +421,6 @@ function lazyLoad(cb, mainContainer) {
       // Loop through IntersectionObserverEntry objects
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          console.log('intersecting')
           mainContainer.classList.contains('searchResults-content-wrapper')
             ? cb(offset, $inputBar.value)
             : cb(offset);

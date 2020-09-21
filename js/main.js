@@ -117,19 +117,11 @@ const searchbarSection = (() => {
     getSearchResults(0, $inputBar.value);
   };
 
-  $autocompleteSuggestionButtons.forEach((suggestion) => {
-    suggestion.onclick = function () {
-      let suggestionTerm = suggestion.childNodes[1].innerText;
-      $inputBar.value = suggestionTerm;
-      getSearchResults(0, $inputBar.value);
-    };
-  });
-
   async function getSearchResults(externalOffset, term) {
     try {
       const searchHidden = $searchResultsContainer.classList.contains('hidden');
       const searchedTerms = getSearchHistory();
-  
+
       if (!(term === searchedTerms[searchedTerms.length - 1])) {
         //When function not being called by lazyload
         storeSearchHistory(term);
@@ -166,11 +158,11 @@ const searchbarSection = (() => {
       data.data.forEach((element) => {
         checkGifRatio(element)
           ? appendToContainer(
-              createGifElement(element, 'result-large'),
+              createElement(element, 'result-large'),
               $searchResultsWrapper
             )
           : appendToContainer(
-              createGifElement(element, 'result-small'),
+              createElement(element, 'result-small'),
               $searchResultsWrapper
             );
       });
@@ -220,14 +212,14 @@ const searchbarSection = (() => {
       //Renders tags from existing search history
       tags.forEach((tag) => {
         appendToContainer(
-          createGifElement(tag, 'searchHistoryTag'),
+          createElement(tag, 'searchHistoryTag'),
           $searchHistoryContainer
         );
       });
     } else {
       //Renders tag for the last search made
       appendToContainer(
-        createGifElement(tags[tags.length - 1], 'searchHistoryTag'),
+        createElement(tags[tags.length - 1], 'searchHistoryTag'),
         $searchHistoryContainer
       );
     }
@@ -244,7 +236,8 @@ const searchbarSection = (() => {
     return result;
   }
 
-  const autocompletePortion = (() => {
+  const autocompletePortion = (async () => {
+    let j = 0;
     async function getAutocompleteTerms(term) {
       try {
         let response = await fetch(
@@ -256,32 +249,60 @@ const searchbarSection = (() => {
         console.log(error);
       }
     }
+    try {
+      $inputBar.onkeyup = async function (e) {
+        let searchTerm = $inputBar.value;
+        let data = await getAutocompleteTerms(searchTerm);
 
-    $inputBar.onkeyup = function (e) {
-      let searchTerm = $inputBar.value;
+        showElements($autocompleteContainer);
 
-      showElements($autocompleteContainer);
-      getAutocompleteTerms(searchTerm).then((data) => {
-        data.data.forEach((termsArray) => {
-          replacePlaceholders(termsArray.name);
-        });
-      });
-      //Hides the autocomplete container when ESC key is used or when
-      //the user deletes all input bar
-      if (e.keyCode === 27 || $inputBar.value === '') {
-        hideElements($autocompleteContainer);
-      }
-      //Performs the search action when ENTER key is used
-      else if (e.keyCode === 13) {
-        getSearchResults(0, $inputBar.value);
-      }
-      //Removes the first four elements from the array to store the new suggestions
-      let oldItems = mainSuggestions.splice(0, 4);
+        if (!$autocompleteContainer.children.length) {
+          data.data.forEach((term) => {
+            appendToContainer(
+              createElement(term.name, 'autocomplete-term'),
+              $autocompleteContainer
+            );
+          });
+        } else {
+          const array = Array.from($autocompleteContainer.children);
+          array.forEach((element) => {
+            element.remove();
+          });
+          data.data.forEach((term) => {
+            appendToContainer(
+              createElement(term.name, 'autocomplete-term'),
+              $autocompleteContainer
+            );
+          });
+        }
 
-      //Removes disabled attribute to submit button
-      //when user starts typing so thet can use it to submit search
-      $submitBtn.removeAttribute('disabled');
-    };
+        //Hides the autocomplete container when ESC key is used or when
+        //the user deletes all input bar
+        if (e.keyCode === 27 || $inputBar.value === '') {
+          hideElements($autocompleteContainer);
+        }
+        //Performs the search action when ENTER key is used
+        else if (e.keyCode === 13) {
+          getSearchResults(0, $inputBar.value);
+        }
+        //Removes the first four elements from the array to store the new suggestions
+        let oldItems = mainSuggestions.splice(0, 4);
+
+        //Removes disabled attribute to submit button
+        //when user starts typing so thet can use it to submit search
+        $submitBtn.removeAttribute('disabled');
+
+        $autocompleteContainer.childNodes.forEach(btn => {
+          btn.onclick = ()=>{
+            let suggestionTerm = btn.childNodes[1].innerText;
+            $inputBar.value = suggestionTerm;
+            getSearchResults(0, $inputBar.value);
+          }
+        })
+      };
+    } catch (err) {
+      console.log(err);
+    }
 
     function replacePlaceholders(...suggestedTerms) {
       for (let i = 0; i < suggestedTerms.length; i++) {
@@ -346,7 +367,7 @@ const suggestionsSection = (() => {
 
   for (let i = 0; i < 4; i++) {
     appendToContainer(
-      createGifElement(null, 'suggestions-lazy'),
+      createElement(null, 'suggestions-lazy'),
       $suggestionsContainer
     );
   }
@@ -384,11 +405,11 @@ const trendingSection = (() => {
         data.data.forEach((element) => {
           checkGifRatio(element)
             ? appendToContainer(
-                createGifElement(element, 'trending-large'),
+                createElement(element, 'trending-large'),
                 $trendingContainer
               )
             : appendToContainer(
-                createGifElement(element, 'trending-small'),
+                createElement(element, 'trending-small'),
                 $trendingContainer
               );
         });
@@ -399,10 +420,7 @@ const trendingSection = (() => {
   }
 
   for (let i = 0; i < 8; i++) {
-    appendToContainer(
-      createGifElement(null, 'trending-lazy'),
-      $trendingContainer
-    );
+    appendToContainer(createElement(null, 'trending-lazy'), $trendingContainer);
   }
   lazyLoad(getTrending, $trendingContainer);
 })();
@@ -460,11 +478,11 @@ const myGifsSection = (() => {
         try {
           checkGifRatio(data)
             ? appendToContainer(
-                createGifElement(data, 'myGif-large'),
+                createElement(data, 'myGif-large'),
                 $myGifsContainer
               )
             : appendToContainer(
-                createGifElement(data, 'myGif-small'),
+                createElement(data, 'myGif-small'),
                 $myGifsContainer
               );
         } catch (error) {
@@ -512,7 +530,7 @@ function addHashtagToWords(string) {
   return newSentence;
 }
 
-function createGifElement(object, type) {
+function createElement(object, type) {
   const $newContainer = document.createElement('div');
 
   switch (type) {
@@ -645,6 +663,11 @@ function createGifElement(object, type) {
         </a>
       </div>`;
       return $newContainer.firstChild;
+    case 'autocomplete-term':
+      $newContainer.innerHTML = `          <button class="btn searchbox-suggestions-item">
+        <span class="btn-text searchbox-suggestions-text">${object}</span>
+      </button>`;
+      return $newContainer;
   }
 }
 

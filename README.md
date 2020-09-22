@@ -1,4 +1,4 @@
-### [Live Version](https://randrerd.github.io/gifOS/) <br>
+### [Live Version](https://gifos.vercel.app/) <br>
 # GifOS
 Sitio de una aplicación web que utiliza la API REST de GIPHY para permitir al usuario obtener sugerencias de GIFs, tendencias, búsquedas personalizadas y crear su propio GIF con el uso de la cámara gracias a la librería de JavaScript RecordRTC. <br>Este es el segundo proyecto del programa de Full Stack Web Development de Acámica en Buenos Aires, Argentina. <br>
 

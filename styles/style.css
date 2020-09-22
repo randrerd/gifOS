@@ -202,6 +202,9 @@ h2 {
   margin-bottom: 0.8rem;
 }
 
+.searchbox-search-history-container {
+  flex-wrap: wrap;
+}
 .searchbox-container.old-school-window {
   margin-bottom: 2rem;
   padding: 0.1rem 0.1rem 0.5rem 0.1rem;

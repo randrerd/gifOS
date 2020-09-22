@@ -148,9 +148,9 @@ const searchbarSection = (() => {
         showElements(
           $searchResultsContainer,
           $returnArrowBtn,
-          $searchHistoryContainer,
           $searchHistoryContainer
         );
+        addFlex($searchHistoryContainer);
       } else {
         hideElements($autocompleteContainer);
       }
@@ -292,13 +292,13 @@ const searchbarSection = (() => {
         //when user starts typing so thet can use it to submit search
         $submitBtn.removeAttribute('disabled');
 
-        $autocompleteContainer.childNodes.forEach(btn => {
-          btn.onclick = ()=>{
+        $autocompleteContainer.childNodes.forEach((btn) => {
+          btn.onclick = () => {
             let suggestionTerm = btn.childNodes[1].innerText;
             $inputBar.value = suggestionTerm;
             getSearchResults(0, $inputBar.value);
-          }
-        })
+          };
+        });
       };
     } catch (err) {
       console.log(err);

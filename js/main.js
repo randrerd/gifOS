@@ -299,6 +299,13 @@ const searchbarSection = (() => {
             getSearchResults(0, $inputBar.value);
           };
         });
+        //Hides autocomplete container if user clicks outside of it
+        window.onclick = (e) => {
+          console.log(e.target);
+          e.target !== $autocompleteContainer
+            ? hideElements($autocompleteContainer)
+            : null;
+        };
       };
     } catch (err) {
       console.log(err);
